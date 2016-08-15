@@ -1,0 +1,12 @@
+c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\bin\Debug\4Presentacion.exe.config
+c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\bin\Debug\4Presentacion.exe
+c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\bin\Debug\4Presentacion.pdb
+c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\bin\Debug\4Presentacion.xml
+c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\obj\Debug\4Presentacion.vbprojResolveAssemblyReference.cache
+c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\obj\Debug\_4Presentacion.Form1.resources
+c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\obj\Debug\_4Presentacion.Resources.resources
+c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\obj\Debug\4Presentacion.vbproj.GenerateResource.Cache
+c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\obj\Debug\4Presentacion.exe
+c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\obj\Debug\4Presentacion.xml
+c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\obj\Debug\4Presentacion.pdb
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\4Presentacion\obj\Debug\_4Presentacion.frmUsuarios.resources
