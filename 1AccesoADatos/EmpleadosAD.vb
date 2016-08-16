@@ -2,22 +2,24 @@
 Imports _3Entidades
 
 Public Class EmpleadosAD
-
+#Region "Variable para conexion a base de datos"
     ' Objeto que permite conectarse a la BD Access
     Dim miConexion As New OleDbConnection("Provider = Microsoft.ACE.OLEDB.12.0; Data Source = Facturacion.accdb")
+#End Region
 
+#Region "Constructor"
     Public Sub New()
         ' Como la clase no contiene atributos, únicamente métodos, esta se podría dejar tal cual
     End Sub
+#End Region
 
-
-#Region "FUnciones"
+#Region "Funciones"
 
 
     ''' <summary>
     ''' Insertar un Empleado
     ''' </summary>
-    ''' <param name="pEmpleado"></param>
+    ''' <param name="pEmpleado">Objeto Empleado</param>
     Public Sub InsertarEmpleado(ByVal pEmpleado As EmpleadosEN)
         Try
 
@@ -54,7 +56,7 @@ Public Class EmpleadosAD
     ''' <summary>
     ''' Modificar un Empleado
     ''' </summary>
-    ''' <param name="pEmpleado"></param>
+    ''' <param name="pEmpleado">Objeto Empleado</param>
 
     Public Sub ModificarEmpleado(ByVal pEmpleado As EmpleadosEN)
         Try
@@ -94,7 +96,7 @@ Public Class EmpleadosAD
     ''' <summary>
     ''' Borrar un Empleado
     ''' </summary>
-    ''' <param name="pEmpleado"></param>
+    ''' <param name="pEmpleado">Objeto Empleado</param>
 
     Public Sub BorrarEmpleado(ByVal pEmpleado As EmpleadosEN)
         Try
@@ -124,8 +126,8 @@ Public Class EmpleadosAD
     ''' <summary>
     ''' Obtener un Empeado por Cedula
     ''' </summary>
-    ''' <param name="pCedula"></param>
-    ''' <returns></returns>
+    ''' <param name="pCedula">Cedula del Empleado</param>
+    ''' <returns>Empleado seleccionado por cedula</returns>
 
     Public Function ObtenerEmpleadoPorCedula(ByVal pCedula As String) As EmpleadosEN
 
@@ -174,7 +176,7 @@ Public Class EmpleadosAD
     ''' <summary>
     ''' Obtener todos los empleados
     ''' </summary>
-    ''' <returns></returns>
+    ''' <returns>Lista de empleados</returns>
 
     Public Function obtenerTodosEmpleados() As List(Of EmpleadosEN)
         Dim empleados As New List(Of EmpleadosEN)

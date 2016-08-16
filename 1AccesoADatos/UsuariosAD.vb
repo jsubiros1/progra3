@@ -2,20 +2,22 @@
 Imports _3Entidades
 
 Public Class UsuariosAD
-
+#Region "Variable para conexion a base de datos"
     ' Objeto que permite conectarse a la BD Access
     Dim miConexion As New OleDbConnection("Provider = Microsoft.ACE.OLEDB.12.0; Data Source = ProyectoDB.accdb")
+#End Region
 
+#Region "Constructor"
     Public Sub New()
             ' Como la clase no contiene atributos, únicamente métodos, esta se podría dejar tal cual
         End Sub
-
+#End Region
 
 #Region "Funciones"
     ''' <summary>
     ''' Insertar un nuevo usuario
     ''' </summary>
-    ''' <param name="pUsuario"></param>
+    ''' <param name="pUsuario">Objeto Usuario</param>
 
     Public Sub InsertarUsuario(ByVal pUsuario As UsuariosEN)
             Try
@@ -52,7 +54,7 @@ Public Class UsuariosAD
     ''' <summary>
     ''' Modificar un Usuario
     ''' </summary>
-    ''' <param name="pUsuario"></param>
+    ''' <param name="pUsuario">Objeto Usuario</param>
 
 
     Public Sub ModificarUsuario(ByVal pUsuario As UsuariosEN)
@@ -89,7 +91,7 @@ Public Class UsuariosAD
     ''' <summary>
     ''' Borrar un Usuario
     ''' </summary>
-    ''' <param name="pUsuario"></param>
+    ''' <param name="pUsuario">Objeto Usuario</param>
 
     Public Sub BorrarUsuario(ByVal pUsuario As UsuariosEN)
             Try
@@ -115,6 +117,53 @@ Public Class UsuariosAD
                 Exit Sub
             End Try
         End Sub
+
+
+    ''' <summary>
+    ''' Obtener un usuario por login
+    ''' </summary>
+    ''' <param name="pLogin">Login o nombre de usuario</param>
+    ''' <returns>Objeto Usuario</returns>
+
+    Public Function ObtenerUsuarioPorLogin(ByVal pLogin As String) As UsuariosEN
+
+        Dim usuario As New UsuariosEN
+
+        Try
+
+            Dim strSelect As String
+            miConexion.Open()
+
+            strSelect = "SELECT * FROM Usuarios 
+                        WHERE Login= @Login"
+
+            Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
+
+            cmdSelect.Parameters.Add("@Login", OleDbType.VarChar).Value = pLogin
+
+            Dim drUsuario As OleDbDataReader = cmdSelect.ExecuteReader
+            While (drUsuario.Read())
+
+                usuario.login = drUsuario("Login")
+                usuario.nombreCompleto = drUsuario("NombreCompleto")
+                usuario.administrador = drUsuario("Administrador")
+                usuario.contador = drUsuario("Contador")
+
+
+            End While
+
+            miConexion.Close()
+            Return usuario
+
+        Catch ex As Exception
+            If (miConexion.State = ConnectionState.Open) Then
+                miConexion.Close()
+            End If
+            Throw New Exception(ex.Message)
+            Return Nothing
+        End Try
+    End Function
+
 
 
     ''' <summary>
