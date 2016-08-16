@@ -74,10 +74,8 @@ Public Class UsuariosAD
             cmdInsert.Parameters.Add("@Administrador", OleDbType.Integer).Value = pUsuario.administrador
             cmdInsert.Parameters.Add("@Contador", OleDbType.Double).Value = pUsuario.contador
 
-
             cmdInsert.ExecuteNonQuery()
             miConexion.Close()
-
 
         Catch ex As Exception
             If (miConexion.State = ConnectionState.Open) Then
@@ -96,7 +94,6 @@ Public Class UsuariosAD
     Public Sub BorrarUsuario(ByVal pUsuario As UsuariosEN)
             Try
 
-
             Dim strInsert As String
             miConexion.Open()
 
@@ -106,7 +103,6 @@ Public Class UsuariosAD
             Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
 
             cmdInsert.Parameters.Add("@Login", OleDbType.VarChar).Value = pUsuario.login
-
 
             cmdInsert.ExecuteNonQuery()
             miConexion.Close()
@@ -132,24 +128,23 @@ Public Class UsuariosAD
 
         Try
 
-            Dim strInsert As String
+            Dim strSelect As String
             miConexion.Open()
 
-            strInsert = "SELECT * FROM Usuarios"
+            strSelect = "SELECT * FROM Usuarios"
 
-            Dim cmdSelect As New OleDbCommand(strInsert, miConexion)
-            cmdSelect.ExecuteNonQuery()
+            Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
 
-            Dim reader As IDataReader = cmdSelect.ExecuteReader()
+            Dim drUsuario As OleDbDataReader = cmdSelect.ExecuteReader
+            While (drUsuario.Read())
 
-            While reader.NextResult
                 Dim u As New UsuariosEN
 
-                u.login = reader.GetValue("Login")
-                u.nombreCompleto = reader.GetValue("NombreCompleto")
-                u.clave = reader.GetValue("Clave")
-                u.administrador = reader.GetValue("Administrador")
-                u.contador = reader.GetValue("Contador")
+                u.login = drUsuario("Login")
+                u.nombreCompleto = drUsuario("NombreCompleto")
+                u.clave = drUsuario("Clave")
+                u.administrador = drUsuario("Administrador")
+                u.contador = drUsuario("Contador")
 
                 usuarios.Add(u)
             End While

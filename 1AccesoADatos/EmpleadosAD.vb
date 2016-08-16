@@ -133,30 +133,28 @@ Public Class EmpleadosAD
 
         Try
 
-            Dim strInsert As String
+            Dim strSelect As String
             miConexion.Open()
 
-            strInsert = "SELECT * FROM Empleados 
+            strSelect = "SELECT * FROM Empleados 
                         WHERE Cedula = @Cedula"
 
-            Dim cmdSelect As New OleDbCommand(strInsert, miConexion)
+            Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
 
             cmdSelect.Parameters.Add("@ced", OleDbType.VarChar).Value = pCedula
 
-            cmdSelect.ExecuteNonQuery()
+            Dim drEmpleado As OleDbDataReader = cmdSelect.ExecuteReader
+            While (drEmpleado.Read())
 
-            Dim reader As IDataReader = cmdSelect.ExecuteReader()
 
-            While reader.NextResult
-
-                empleado.Cedula = reader.GetValue("Cedula")
-                empleado.NombreCompleto = reader.GetValue("NombreCompleto")
-                empleado.Cod_Dept = reader.GetValue("Cod_Dept")
-                empleado.Tel_Celular = reader.GetValue("Tel_Celular")
-                empleado.Tel_Casa = reader.GetValue("Tel_Casa")
-                empleado.Fec_Nacimiento = reader.GetValue("Fec_Nacimiento")
-                empleado.E_Mail = reader.GetValue("E_Mail")
-                empleado.Dir_Completa = reader.GetValue("Dir_Completa")
+                empleado.Cedula = drEmpleado("Cedula")
+                empleado.NombreCompleto = drEmpleado("NombreCompleto")
+                empleado.Cod_Dept = drEmpleado("Cod_Dept")
+                empleado.Tel_Celular = drEmpleado("Tel_Celular")
+                empleado.Tel_Casa = drEmpleado("Tel_Casa")
+                empleado.Fec_Nacimiento = drEmpleado("Fec_Nacimiento")
+                empleado.E_Mail = drEmpleado("E_Mail")
+                empleado.Dir_Completa = drEmpleado("Dir_Completa")
 
             End While
 
@@ -183,27 +181,27 @@ Public Class EmpleadosAD
 
         Try
 
-            Dim strInsert As String
+            Dim strSelect As String
             miConexion.Open()
 
-            strInsert = "SELECT * FROM Empleados"
+            strSelect = "SELECT * FROM Empleados"
 
-            Dim cmdSelect As New OleDbCommand(strInsert, miConexion)
-            cmdSelect.ExecuteNonQuery()
+            Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
+            Dim drEmpleado As OleDbDataReader = cmdSelect.ExecuteReader
 
-            Dim reader As IDataReader = cmdSelect.ExecuteReader()
 
-            While reader.NextResult
+            While (drEmpleado.Read())
+
                 Dim e As New EmpleadosEN
 
-                e.Cedula = reader.GetValue("Cedula")
-                e.NombreCompleto = reader.GetValue("NombreCompleto")
-                e.Cod_Dept = reader.GetValue("Cod_Dept")
-                e.Tel_Celular = reader.GetValue("Tel_Celular")
-                e.Tel_Casa = reader.GetValue("Tel_Casa")
-                e.Fec_Nacimiento = reader.GetValue("Fec_Nacimiento")
-                e.E_Mail = reader.GetValue("E_Mail")
-                e.Dir_Completa = reader.GetValue("Dir_Completa")
+                e.Cedula = drEmpleado("Cedula")
+                e.NombreCompleto = drEmpleado("NombreCompleto")
+                e.Cod_Dept = drEmpleado("Cod_Dept")
+                e.Tel_Celular = drEmpleado("Tel_Celular")
+                e.Tel_Casa = drEmpleado("Tel_Casa")
+                e.Fec_Nacimiento = drEmpleado("Fec_Nacimiento")
+                e.E_Mail = drEmpleado("E_Mail")
+                e.Dir_Completa = drEmpleado("Dir_Completa")
 
                 empleados.Add(e)
 
