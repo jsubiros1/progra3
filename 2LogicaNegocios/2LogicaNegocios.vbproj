@@ -104,6 +104,16 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\1AccesoADatos\1AccesoADatos.vbproj">
+      <Project>{bdcfbb12-13ca-4fa4-85ea-76c3bef46d83}</Project>
+      <Name>1AccesoADatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\3Entidades\3Entidades.vbproj">
+      <Project>{8f5ed39c-09d4-4a59-b1d9-00c1a17fa0d3}</Project>
+      <Name>3Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

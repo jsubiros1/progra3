@@ -1,0 +1,14 @@
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\1AccesoADatos.dll
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\1AccesoADatos.pdb
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\1AccesoADatos.xml
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\1AccesoADatos.dll.CodeAnalysisLog.xml
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\1AccesoADatos.dll.lastcodeanalysissucceeded
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\3Entidades.dll
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\3Entidades.pdb
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\3Entidades.xml
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\obj\Debug\1AccesoADatos.vbprojResolveAssemblyReference.cache
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\obj\Debug\_1AccesoADatos.Resources.resources
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\obj\Debug\1AccesoADatos.vbproj.GenerateResource.Cache
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\obj\Debug\1AccesoADatos.dll
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\obj\Debug\1AccesoADatos.xml
+E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\obj\Debug\1AccesoADatos.pdb

@@ -1,0 +1,9 @@
+E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\bin\Debug\3Entidades.dll
+E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\bin\Debug\3Entidades.pdb
+E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\bin\Debug\3Entidades.xml
+E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\obj\Debug\3Entidades.vbprojResolveAssemblyReference.cache
+E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\obj\Debug\_3Entidades.Resources.resources
+E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\obj\Debug\3Entidades.vbproj.GenerateResource.Cache
+E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\obj\Debug\3Entidades.dll
+E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\obj\Debug\3Entidades.xml
+E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\obj\Debug\3Entidades.pdb
