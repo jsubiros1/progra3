@@ -126,42 +126,36 @@ Public Class UsuariosAD
     ''' <returns>Objeto Usuario</returns>
 
     Public Function ObtenerUsuarioPorLogin(ByVal pLogin As String) As UsuariosEN
-
-        Dim usuario As New UsuariosEN
-
         Try
-
-            Dim strSelect As String
+            Dim strBuscar As String = "SELECT Login,NombreCompleto,Clave,Administrador,Contador FROM Usuarios WHERE Login=@Login"
             miConexion.Open()
+            Dim cmdUsuario As New OleDbCommand(strBuscar, miConexion)
+            cmdUsuario.Parameters.Add("@Login", OleDbType.VarChar).Value = pLogin
 
-            strSelect = "SELECT * FROM Usuarios 
-                        WHERE Login= @Login"
+            Dim myUsuario As UsuariosEN = Nothing
 
-            Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
-
-            cmdSelect.Parameters.Add("@Login", OleDbType.VarChar).Value = pLogin
-
-            Dim drUsuario As OleDbDataReader = cmdSelect.ExecuteReader
+            Dim drUsuario As OleDbDataReader = cmdUsuario.ExecuteReader
             While (drUsuario.Read())
-
-                usuario.login = drUsuario("Login")
-                usuario.nombreCompleto = drUsuario("NombreCompleto")
-                usuario.administrador = drUsuario("Administrador")
-                usuario.contador = drUsuario("Contador")
-
-
+                myUsuario = New UsuariosEN
+                myUsuario.login = drUsuario("Login")
+                myUsuario.nombreCompleto = drUsuario("NombreCompleto")
+                myUsuario.clave = drUsuario("Clave")
+                myUsuario.administrador = drUsuario("Administrador")
+                myUsuario.contador = drUsuario("Contador")
             End While
-
+            drUsuario.Close()
             miConexion.Close()
-            Return usuario
+            Return myUsuario
 
         Catch ex As Exception
             If (miConexion.State = ConnectionState.Open) Then
-                miConexion.Close()
-            End If
-            Throw New Exception(ex.Message)
-            Return Nothing
+            miConexion.Close()
+        End If
+        Throw New Exception(ex.Message)
+        Exit Function
         End Try
+
+
     End Function
 
 
