@@ -128,6 +128,9 @@ Public Class UsuariosAD
     Public Function ObtenerUsuarioPorLogin(ByVal pLogin As String) As UsuariosEN
         Try
             Dim strBuscar As String = "SELECT Login,NombreCompleto,Clave,Administrador,Contador FROM Usuarios WHERE Login=@Login"
+
+
+
             miConexion.Open()
             Dim cmdUsuario As New OleDbCommand(strBuscar, miConexion)
             cmdUsuario.Parameters.Add("@Login", OleDbType.VarChar).Value = pLogin

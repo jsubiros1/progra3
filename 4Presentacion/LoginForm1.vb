@@ -15,16 +15,14 @@ Public Class LoginForm1
 
 
         Dim validaUser As New UsuariosLN
-        usuarioActual = validaUser.ObtenerUsuariosPorLogin(txtUsr.Text)
+            usuarioActual = validaUser.ObtenerUsuariosPorLogin(txtUsr.Text)
 
         If IsNothing(usuarioActual) Then
             MessageBox.Show("No existe ese usuario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End
         ElseIf usuarioActual.clave = txtPss.Text Then
             Me.DialogResult = DialogResult.Yes
         Else
             MessageBox.Show("La clave no coincide", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End
         End If
 
 
