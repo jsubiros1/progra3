@@ -1,87 +1,82 @@
-﻿Imports _3Entidades
-Imports System.Data.OleDb
+﻿Imports System.Data.OleDb
+Imports _3Entidades
 
 Public Class UsuariosAD
-
-
+#Region "Variable para conexion a base de datos"
     ' Objeto que permite conectarse a la BD Access
     Dim miConexion As New OleDbConnection("Provider = Microsoft.ACE.OLEDB.12.0; Data Source = ProyectoDB.accdb")
+#End Region
 
+#Region "Constructor"
     Public Sub New()
             ' Como la clase no contiene atributos, únicamente métodos, esta se podría dejar tal cual
         End Sub
+#End Region
 
-    Public Sub InsertarUsuarios(ByVal pUsuarios As UsuariosEN)
-        Try
+#Region "Funciones"
+    ''' <summary>
+    ''' Insertar un nuevo usuario
+    ''' </summary>
+    ''' <param name="pUsuario">Objeto Usuario</param>
 
+    Public Sub InsertarUsuario(ByVal pUsuario As UsuariosEN)
+            Try
 
-            miConexion.Open()
             Dim strInsert As String
-            strInsert = "INSERT INTO Usuarios(Login,NombreCompleto,Clave,Administrador,Contador) values(@Login,@NombreCompleto,@Clave,@Administrador,@Contador)"
-
-
-            Dim cmdSocio As New OleDbCommand(strInsert, miConexion)
-            cmdSocio.Parameters.Add("@Login", OleDbType.VarChar).Value = pUsuarios.login
-            cmdSocio.Parameters.Add("@NombreCompleto", OleDbType.VarChar).Value = pUsuarios.nombreCompleto
-            cmdSocio.Parameters.Add("@Clave", OleDbType.VarChar).Value = pUsuarios.clave
-            cmdSocio.Parameters.Add("@Administrador", OleDbType.Boolean).Value = pUsuarios.administrador
-            cmdSocio.Parameters.Add("@Contador", OleDbType.Boolean).Value = pUsuarios.contador
-
-            cmdSocio.ExecuteNonQuery()
-            miConexion.Close()
-        Catch ex As Exception
-            If (miConexion.State = ConnectionState.Open) Then
-                miConexion.Close()
-            End If
-            Throw New Exception(ex.Message)
-            Exit Sub
-        End Try
-    End Sub
-
-    Public Sub ModificarUsuarios(ByVal pUsuarios As UsuariosEN)
-        Try
-
             miConexion.Open()
-            Dim strModificar As String
 
-            ''llave primaria no se cambia 
-            ''la llame va en where
-            strModificar = "UPDATE  Usuarios SET @NombreCompleto,@Clave,@Administrador,@Contador WHERE Login=@Login"
+            strInsert = "INSERT INTO Usuarios(Login, NombreCompleto, Clave, Administrador, Contador) 
+                        VALUES(@Login, @NombreCompleto, @Clave, @Administrador, @Contador)"
 
-            ''Los parametros tiene q ir en orden de la sentencia 
-            Dim cmdSocio As New OleDbCommand(strModificar, miConexion)
+            Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
 
-            cmdSocio.Parameters.Add("@NombreCompleto", OleDbType.VarChar).Value = pUsuarios.nombreCompleto
-            cmdSocio.Parameters.Add("@Clave", OleDbType.VarChar).Value = pUsuarios.clave
-            cmdSocio.Parameters.Add("@Administrador", OleDbType.Boolean).Value = pUsuarios.administrador
-            cmdSocio.Parameters.Add("@Contador", OleDbType.Boolean).Value = pUsuarios.contador
-            cmdSocio.Parameters.Add("@Login", OleDbType.VarChar).Value = pUsuarios.login
-            cmdSocio.ExecuteNonQuery()
+            cmdInsert.Parameters.Add("@Login", OleDbType.VarChar).Value = pUsuario.login
+            cmdInsert.Parameters.Add("@NombreCompleto", OleDbType.VarChar).Value = pUsuario.nombreCompleto
+            cmdInsert.Parameters.Add("@Clave", OleDbType.Date).Value = pUsuario.clave
+            cmdInsert.Parameters.Add("@Administrador", OleDbType.Integer).Value = pUsuario.administrador
+            cmdInsert.Parameters.Add("@Contador", OleDbType.Double).Value = pUsuario.contador
+
+
+            cmdInsert.ExecuteNonQuery()
             miConexion.Close()
 
-        Catch ex As Exception
-            If (miConexion.State = ConnectionState.Open) Then
-                miConexion.Close()
-            End If
-            Throw New Exception(ex.Message)
-            Exit Sub
-        End Try
-    End Sub
 
-    Public Sub BorrarUsuarios(ByVal pUsuarios As UsuariosEN)
+        Catch ex As Exception
+                If (miConexion.State = ConnectionState.Open) Then
+                    miConexion.Close()
+                End If
+                Throw New Exception(ex.Message)
+                Exit Sub
+            End Try
+        End Sub
+
+
+    ''' <summary>
+    ''' Modificar un Usuario
+    ''' </summary>
+    ''' <param name="pUsuario">Objeto Usuario</param>
+
+
+    Public Sub ModificarUsuario(ByVal pUsuario As UsuariosEN)
         Try
+
+
+            Dim strInsert As String
             miConexion.Open()
-            Dim strborrar As String
-            strborrar = "DELETE FROM Usuarios Login =@ Login"
-            Dim cmdSocio As New OleDbCommand(strborrar, miConexion)
 
-            cmdSocio.Parameters.Add("@Login", OleDbType.VarWChar).Value = pUsuarios.login
+            strInsert = "UPDATE Usuarios 
+                        SET(NombreCompleto = @NombreCompleto, Clave = @Clave, Administrador = @Administrador, Contador = @Contador)
+                        WHERE Login = @Login"
 
+            Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
 
+            cmdInsert.Parameters.Add("@Login", OleDbType.VarChar).Value = pUsuario.login
+            cmdInsert.Parameters.Add("@NombreCompleto", OleDbType.VarChar).Value = pUsuario.nombreCompleto
+            cmdInsert.Parameters.Add("@Clave", OleDbType.Date).Value = pUsuario.clave
+            cmdInsert.Parameters.Add("@Administrador", OleDbType.Integer).Value = pUsuario.administrador
+            cmdInsert.Parameters.Add("@Contador", OleDbType.Double).Value = pUsuario.contador
 
-
-            cmdSocio.ExecuteNonQuery()
-
+            cmdInsert.ExecuteNonQuery()
             miConexion.Close()
 
         Catch ex As Exception
@@ -93,10 +88,49 @@ Public Class UsuariosAD
         End Try
     End Sub
 
-    Public Function ObtenerUsuariosPorLogin(ByVal pLogin As String) As UsuariosEN
-        Try
+    ''' <summary>
+    ''' Borrar un Usuario
+    ''' </summary>
+    ''' <param name="pUsuario">Objeto Usuario</param>
 
+    Public Sub BorrarUsuario(ByVal pUsuario As UsuariosEN)
+            Try
+
+            Dim strInsert As String
+            miConexion.Open()
+
+            strInsert = "DELETE FROM Usuarios
+                        WHERE Login = @Login"
+
+            Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
+
+            cmdInsert.Parameters.Add("@Login", OleDbType.VarChar).Value = pUsuario.login
+
+            cmdInsert.ExecuteNonQuery()
+            miConexion.Close()
+
+        Catch ex As Exception
+                If (miConexion.State = ConnectionState.Open) Then
+                    miConexion.Close()
+                End If
+                Throw New Exception(ex.Message)
+                Exit Sub
+            End Try
+        End Sub
+
+
+    ''' <summary>
+    ''' Obtener un usuario por login
+    ''' </summary>
+    ''' <param name="pLogin">Login o nombre de usuario</param>
+    ''' <returns>Objeto Usuario</returns>
+
+    Public Function ObtenerUsuarioPorLogin(ByVal pLogin As String) As UsuariosEN
+        Try
             Dim strBuscar As String = "SELECT Login,NombreCompleto,Clave,Administrador,Contador FROM Usuarios WHERE Login=@Login"
+
+
+
             miConexion.Open()
             Dim cmdUsuario As New OleDbCommand(strBuscar, miConexion)
             cmdUsuario.Parameters.Add("@Login", OleDbType.VarChar).Value = pLogin
@@ -106,64 +140,76 @@ Public Class UsuariosAD
             Dim drUsuario As OleDbDataReader = cmdUsuario.ExecuteReader
             While (drUsuario.Read())
                 myUsuario = New UsuariosEN
-                myUsuario.Login = drUsuario("Login")
+                myUsuario.login = drUsuario("Login")
                 myUsuario.nombreCompleto = drUsuario("NombreCompleto")
-                myUsuario.Clave = drUsuario("Clave")
+                myUsuario.clave = drUsuario("Clave")
                 myUsuario.administrador = drUsuario("Administrador")
-                myUsuario.Contador = drUsuario("Contador")
+                myUsuario.contador = drUsuario("Contador")
             End While
             drUsuario.Close()
             miConexion.Close()
             Return myUsuario
 
-
         Catch ex As Exception
             If (miConexion.State = ConnectionState.Open) Then
-                miConexion.Close()
-            End If
-            Throw New Exception(ex.Message)
-            Exit Function
+            miConexion.Close()
+        End If
+        Throw New Exception(ex.Message)
+        Exit Function
         End Try
+
+
     End Function
 
-    Public Function obtenerTodosUsuarioss() As List(Of UsuariosEN)
+
+
+    ''' <summary>
+    ''' Obtener todos los Usuarios
+    ''' </summary>
+    ''' <returns></returns>
+
+    Public Function obtenerTodosUsuarios() As List(Of UsuariosEN)
+
+        Dim usuarios As New List(Of UsuariosEN)
+
         Try
 
+            Dim strSelect As String
             miConexion.Open()
 
-            Dim strSelect As String
-            strSelect = "SELECT SELECT Login,NombreCompleto,Clave,Administrador,Contador FROM Usuarios  "
+            strSelect = "SELECT * FROM Usuarios"
 
-            Dim cmdSocio As New OleDbCommand(strSelect, miConexion)
+            Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
 
-            Dim lstSocios As New List(Of UsuariosEN)
-            Dim druser As OleDbDataReader = cmdSocio.ExecuteReader()
-            While (druser.Read())
-                Dim myUser = New UsuariosEN
-                myUser.login = druser("Login")
-                myUser.nombreCompleto = druser("NombreCompleto")
-                myUser.clave = druser("Clave")
-                myUser.administrador = druser("Administrador")
-                myUser.contador = druser("Contador")
+            Dim drUsuario As OleDbDataReader = cmdSelect.ExecuteReader
+            While (drUsuario.Read())
 
+                Dim u As New UsuariosEN
 
-                lstSocios.Add(myUser)
+                u.login = drUsuario("Login")
+                u.nombreCompleto = drUsuario("NombreCompleto")
+                u.clave = drUsuario("Clave")
+                u.administrador = drUsuario("Administrador")
+                u.contador = drUsuario("Contador")
+
+                usuarios.Add(u)
             End While
-            druser.Close()
+
             miConexion.Close()
-            Return lstSocios
+            Return usuarios
+
         Catch ex As Exception
             If (miConexion.State = ConnectionState.Open) Then
                 miConexion.Close()
             End If
+
             Throw New Exception(ex.Message)
-            Exit Function
+            Return Nothing
+
         End Try
+
     End Function
 
-
-
-
-
+#End Region
 
 End Class

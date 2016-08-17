@@ -8,22 +8,27 @@ Public Class UsuariosLN
             ' Como la clase no contiene atributos, únicamente métodos, esta se podría dejar tal cual
         End Sub
 
-        Public Sub InsertarUsuarios(ByVal pUsuarios As UsuariosEN)
+
+
+    ''' <summary>
+    ''' Inserta un usuario
+    ''' </summary>
+    ''' <param name="pUsuarios"></param>
+    Public Sub InsertarUsuarios(ByVal pUsuarios As UsuariosEN)
             Try
             If (pUsuarios.login.Trim().Length = 0) Then
                 Throw New Exception("El Login es obligatoria")
 
             End If
 
+            Dim usuario As New UsuariosAD
 
-            Dim socAcceso As New UsuariosAD
-
-            If Not IsNothing(socAcceso.ObtenerUsuariosPorLogin(pUsuarios.login)) Then
+            If Not IsNothing(usuario.ObtenerUsuarioPorLogin(pUsuarios.login)) Then
                 Throw New Exception("Ese Usuario ya Existe")
 
             End If
 
-            socAcceso.InsertarUsuarios(pUsuarios)
+            usuario.InsertarUsuario(pUsuarios)
 
 
 
