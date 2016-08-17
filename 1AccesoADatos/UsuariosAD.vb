@@ -224,6 +224,7 @@ Public Class UsuariosAD
     Public Function loginDeUsuarios(ByVal pLogin As String, ByVal pClave As String) As UsuariosEN
 
         Dim usuario As New UsuariosEN
+        usuario = Nothing
 
         Try
 
@@ -231,13 +232,13 @@ Public Class UsuariosAD
             miConexion.Open()
 
             strSelect = "SELECT * FROM Usuarios 
-                        WHERE Login = @Login 
-                        AND Clave = @clave"
+                            WHERE Login = @Login 
+                            AND Clave = @clave"
 
             Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
 
             cmdSelect.Parameters.Add("@Login", OleDbType.VarChar).Value = pLogin
-            cmdSelect.Parameters.Add("@Clave", OleDbType.VarChar).Value = pClave
+            cmdSelect.Parameters.Add("@clave", OleDbType.VarChar).Value = pClave
 
             Dim drUsuario As OleDbDataReader = cmdSelect.ExecuteReader
             While (drUsuario.Read())
