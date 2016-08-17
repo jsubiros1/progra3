@@ -1,48 +1,37 @@
 ﻿Imports System.Data.OleDb
 Imports _3Entidades
 
-Public Class EmpleadosAD
-#Region "Variable para conexion a base de datos"
-    ' Objeto que permite conectarse a la BD Access
-    Dim miConexion As New OleDbConnection("Provider = Microsoft.ACE.OLEDB.12.0; Data Source = Facturacion.accdb")
-#End Region
 
-#Region "Constructor"
+
+
+Public Class EmpleadosAD
+
+    Dim miConexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=ProyectoDB.accdb")
     Public Sub New()
         ' Como la clase no contiene atributos, únicamente métodos, esta se podría dejar tal cual
     End Sub
-#End Region
 
-#Region "Funciones"
-
-
-    ''' <summary>
-    ''' Insertar un Empleado
-    ''' </summary>
-    ''' <param name="pEmpleado">Objeto Empleado</param>
     Public Sub InsertarEmpleado(ByVal pEmpleado As EmpleadosEN)
         Try
 
-            Dim strInsert As String
             miConexion.Open()
+            Dim strInsert As String
+            strInsert = "INSERT INTO Empleados(Cedula,NombreCompleto,Tel_Celular,Tel_Casa,Fec_Nacimiento,E_mail,Cod_Depto,Dir_Completa) values(@Cedula,@NombreCompleto,@Tel_Celular,@Tel_Casa,@Fec_Nacimiento,@E_mail,@Cod_Depto,@Dir_Completa)"
 
-            strInsert = "INSERT INTO Empleados(Cedula, NombreCompleto, Cod_Dept, Tel_Celular, Tel_Casa, Fec_Nacimiento, E_Mail, Dir_Completa) 
-                        VALUES(@ced, @nombre, @codDept, @telCel, @telCasa, @fecNac, @email, @dirComp)"
 
-            Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
+            Dim cmdSocio As New OleDbCommand(strInsert, miConexion)
+            cmdSocio.Parameters.Add("@Cedula", OleDbType.VarChar).Value = pEmpleado.Cedula
+            cmdSocio.Parameters.Add("@NombreCompleto", OleDbType.VarChar).Value = pEmpleado.NombreCompleto
+            cmdSocio.Parameters.Add("@Tel_Celular", OleDbType.VarChar).Value = pEmpleado.Tel_Celular
+            cmdSocio.Parameters.Add("@Tel_Casa", OleDbType.VarChar).Value = pEmpleado.Tel_Casa
+            cmdSocio.Parameters.Add("@Fec_Nacimiento", OleDbType.Date).Value = pEmpleado.Fec_Nacimiento
+            cmdSocio.Parameters.Add("@E_mail", OleDbType.VarChar).Value = pEmpleado.E_Mail
+            cmdSocio.Parameters.Add("@Cod_Depto", OleDbType.VarChar).Value = pEmpleado.Cod_Dept
+            cmdSocio.Parameters.Add("@Dir_Completa", OleDbType.VarChar).Value = pEmpleado.Dir_Completa
 
-            cmdInsert.Parameters.Add("@ced", OleDbType.VarChar).Value = pEmpleado.Cedula
-            cmdInsert.Parameters.Add("@nombre", OleDbType.VarChar).Value = pEmpleado.NombreCompleto
-            cmdInsert.Parameters.Add("@codDept", OleDbType.Date).Value = pEmpleado.Cod_Dept
-            cmdInsert.Parameters.Add("@telCel", OleDbType.Integer).Value = pEmpleado.Tel_Celular
-            cmdInsert.Parameters.Add("@telCasa", OleDbType.Double).Value = pEmpleado.Tel_Casa
-            cmdInsert.Parameters.Add("@fecNac", OleDbType.Double).Value = pEmpleado.Fec_Nacimiento
-            cmdInsert.Parameters.Add("@email", OleDbType.Double).Value = pEmpleado.E_Mail
-            cmdInsert.Parameters.Add("@dirComp", OleDbType.Double).Value = pEmpleado.Dir_Completa
 
-            cmdInsert.ExecuteNonQuery()
+            cmdSocio.ExecuteNonQuery()
             miConexion.Close()
-
         Catch ex As Exception
             If (miConexion.State = ConnectionState.Open) Then
                 miConexion.Close()
@@ -51,175 +40,137 @@ Public Class EmpleadosAD
             Exit Sub
         End Try
     End Sub
-
-
-    ''' <summary>
-    ''' Modificar un Empleado
-    ''' </summary>
-    ''' <param name="pEmpleado">Objeto Empleado</param>
 
     Public Sub ModificarEmpleado(ByVal pEmpleado As EmpleadosEN)
         Try
 
-            Dim strInsert As String
             miConexion.Open()
+            Dim strModificar As String
 
-            strInsert = "UPDATE Empleados SET(NombreCompleto = @nombre, Cod_Dept = @codDept, Tel_Celular = @telCel, Tel_Casa = @telCasa, Fec_Nacimiento = @fecNac, 
-                        E_Mail = @email, Dir_Completa = @dirComp)
-                        WHERE Cedula = @ced"
+            ''llave primaria no se cambia 
+            ''la llame va en where
+            strModificar = "UPDATE  Empleados SET @NombreCompleto,@Tel_Celular,@Tel_Casa,@Fec_Nacimiento,@E_mail,@Cod_Depto,@Dir_Completa WHERE Cedula=@Cedula"
 
-            Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
+            ''Los parametros tiene q ir en orden de la sentencia 
+            Dim cmdSocio As New OleDbCommand(strModificar, miConexion)
 
-            cmdInsert.Parameters.Add("@ced", OleDbType.VarChar).Value = pEmpleado.Cedula
-            cmdInsert.Parameters.Add("@nombre", OleDbType.VarChar).Value = pEmpleado.NombreCompleto
-            cmdInsert.Parameters.Add("@codDept", OleDbType.Date).Value = pEmpleado.Cod_Dept
-            cmdInsert.Parameters.Add("@telCel", OleDbType.Integer).Value = pEmpleado.Tel_Celular
-            cmdInsert.Parameters.Add("@telCasa", OleDbType.Double).Value = pEmpleado.Tel_Casa
-            cmdInsert.Parameters.Add("@fecNac", OleDbType.Double).Value = pEmpleado.Fec_Nacimiento
-            cmdInsert.Parameters.Add("@email", OleDbType.Double).Value = pEmpleado.E_Mail
-            cmdInsert.Parameters.Add("@dirComp", OleDbType.Double).Value = pEmpleado.Dir_Completa
+            cmdSocio.Parameters.Add("@NombreCompleto", OleDbType.VarChar).Value = pEmpleado.NombreCompleto
+            cmdSocio.Parameters.Add("@Tel_Celular", OleDbType.VarChar).Value = pEmpleado.Tel_Celular
+            cmdSocio.Parameters.Add("@Tel_Casa", OleDbType.VarChar).Value = pEmpleado.Tel_Casa
+            cmdSocio.Parameters.Add("@Fec_Nacimiento", OleDbType.Date).Value = pEmpleado.Fec_Nacimiento
+            cmdSocio.Parameters.Add("@E_mail", OleDbType.VarChar).Value = pEmpleado.E_Mail
+            cmdSocio.Parameters.Add("@Cod_Depto", OleDbType.VarChar).Value = pEmpleado.Cod_Dept
+            cmdSocio.Parameters.Add("@Dir_Completa", OleDbType.VarChar).Value = pEmpleado.Dir_Completa
 
-            cmdInsert.ExecuteNonQuery()
+
+            cmdSocio.Parameters.Add("@Cedula", OleDbType.VarChar).Value = pEmpleado.Cedula
+            cmdSocio.ExecuteNonQuery()
             miConexion.Close()
-
-
         Catch ex As Exception
-            If (miConexion.State = ConnectionState.Open) Then
-                miConexion.Close()
-            End If
             Throw New Exception(ex.Message)
             Exit Sub
         End Try
     End Sub
-
-
-    ''' <summary>
-    ''' Borrar un Empleado
-    ''' </summary>
-    ''' <param name="pEmpleado">Objeto Empleado</param>
 
     Public Sub BorrarEmpleado(ByVal pEmpleado As EmpleadosEN)
         Try
-
-            Dim strInsert As String
             miConexion.Open()
+            Dim strborrar As String
+            strborrar = "DELETE FROM Empleados CEDULA =@ CEDULA"
+            Dim cmdSocio As New OleDbCommand(strborrar, miConexion)
 
-            strInsert = "DELETE FROM Empleados
-                        WHERE Cedula = @ced"
+            cmdSocio.Parameters.Add("@Cedula", OleDbType.VarWChar).Value = pEmpleado.Cedula
 
-            Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
 
-            cmdInsert.Parameters.Add("@ced", OleDbType.VarChar).Value = pEmpleado.Cedula
 
-            cmdInsert.ExecuteNonQuery()
+
+            cmdSocio.ExecuteNonQuery()
+
+
             miConexion.Close()
 
         Catch ex As Exception
-            If (miConexion.State = ConnectionState.Open) Then
-                miConexion.Close()
-            End If
             Throw New Exception(ex.Message)
             Exit Sub
         End Try
     End Sub
 
-    ''' <summary>
-    ''' Obtener un Empeado por Cedula
-    ''' </summary>
-    ''' <param name="pCedula">Cedula del Empleado</param>
-    ''' <returns>Empleado seleccionado por cedula</returns>
-
-    Public Function ObtenerEmpleadoPorCedula(ByVal pCedula As String) As EmpleadosEN
-
-        Dim empleado As New EmpleadosEN
-
+    Public Function ObtenerEmpleadosPorCedula(ByVal pCedula As String) As EmpleadosEN
         Try
 
-            Dim strSelect As String
             miConexion.Open()
+            Dim strSelect As String
+            strSelect = "SELECT Cedula,NombreCompleto,Tel_Celular,Tel_Casa,Fec_Nacimiento,E_mail,Cod_Depto,Dir_Completa FROM Empleados WHERE Cedula=@Cedula"
+            Dim cmdSocio As New OleDbCommand(strSelect, miConexion)
 
-            strSelect = "SELECT * FROM Empleados 
-                        WHERE Cedula = @Cedula"
+            cmdSocio.Parameters.Add("@Cedula", OleDbType.VarChar).Value = pCedula
 
-            Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
+            Dim myUser As EmpleadosEN = Nothing
+            Dim drUser As OleDbDataReader = cmdSocio.ExecuteReader()
 
-            cmdSelect.Parameters.Add("@ced", OleDbType.VarChar).Value = pCedula
+            While (drUser.Read())
+                myUser = New EmpleadosEN
+                myUser.Cedula = drUser("Cedula")
+                myUser.NombreCompleto = drUser("NombreCompleto")
+                myUser.Tel_Celular = drUser("Tel_Celular")
+                myUser.Tel_Casa = drUser("Tel_Casa")
+                myUser.Fec_Nacimiento = drUser("Fec_Nacimiento")
+                myUser.E_Mail = drUser("E_mail")
+                myUser.Cod_Dept = drUser("Cod_Depto")
+                myUser.Dir_Completa = drUser("Dir_Completa")
 
-            Dim drEmpleado As OleDbDataReader = cmdSelect.ExecuteReader
-            While (drEmpleado.Read())
 
-
-                empleado.Cedula = drEmpleado("Cedula")
-                empleado.NombreCompleto = drEmpleado("NombreCompleto")
-                empleado.Cod_Dept = drEmpleado("Cod_Dept")
-                empleado.Tel_Celular = drEmpleado("Tel_Celular")
-                empleado.Tel_Casa = drEmpleado("Tel_Casa")
-                empleado.Fec_Nacimiento = drEmpleado("Fec_Nacimiento")
-                empleado.E_Mail = drEmpleado("E_Mail")
-                empleado.Dir_Completa = drEmpleado("Dir_Completa")
 
             End While
-
+            drUser.Close()
             miConexion.Close()
-            Return empleado
+            Return myUser
+
 
         Catch ex As Exception
-            If (miConexion.State = ConnectionState.Open) Then
-                miConexion.Close()
-            End If
             Throw New Exception(ex.Message)
-            Return Nothing
+            Exit Function
         End Try
     End Function
-
-
-    ''' <summary>
-    ''' Obtener todos los empleados
-    ''' </summary>
-    ''' <returns>Lista de empleados</returns>
 
     Public Function obtenerTodosEmpleados() As List(Of EmpleadosEN)
-        Dim empleados As New List(Of EmpleadosEN)
-
         Try
-
-            Dim strSelect As String
             miConexion.Open()
 
-            strSelect = "SELECT * FROM Empleados"
+            Dim strSelect As String
+            strSelect = " SELECT Cedula,NombreCompleto,Tel_Celular,Tel_Casa,Fec_Nacimiento,E_mail,Cod_Depto,Dir_Completa FROM Empleados  "
 
-            Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
-            Dim drEmpleado As OleDbDataReader = cmdSelect.ExecuteReader
+            Dim cmdSocio As New OleDbCommand(strSelect, miConexion)
 
 
-            While (drEmpleado.Read())
+            Dim lstSocios As New List(Of EmpleadosEN)
+            Dim drUser As OleDbDataReader = cmdSocio.ExecuteReader()
+            While (drUser.Read())
+                Dim myUser As New EmpleadosEN
 
-                Dim e As New EmpleadosEN
+                myUser.Cedula = drUser("Cedula")
+                myUser.NombreCompleto = drUser("NombreCompleto")
+                myUser.tel_Celular = drUser("Tel_Celular")
+                myUser.tel_Casa = drUser("Tel_Casa")
+                myUser.fec_Nacimiento = drUser("Fec_Nacimiento")
+                myUser.E_Mail = drUser("E_mail")
+                myUser.Cod_Dept = drUser("Cod_Depto")
+                myUser.dir_completa = drUser("Dir_Completa")
 
-                e.Cedula = drEmpleado("Cedula")
-                e.NombreCompleto = drEmpleado("NombreCompleto")
-                e.Cod_Dept = drEmpleado("Cod_Dept")
-                e.Tel_Celular = drEmpleado("Tel_Celular")
-                e.Tel_Casa = drEmpleado("Tel_Casa")
-                e.Fec_Nacimiento = drEmpleado("Fec_Nacimiento")
-                e.E_Mail = drEmpleado("E_Mail")
-                e.Dir_Completa = drEmpleado("Dir_Completa")
-
-                empleados.Add(e)
-
+                lstSocios.Add(myUser) 'nuevo,sellena la lista 
             End While
-
+            drUser.Close()
             miConexion.Close()
-            Return empleados
-
+            Return lstSocios 'se retorna la lista 
         Catch ex As Exception
             If (miConexion.State = ConnectionState.Open) Then
                 miConexion.Close()
             End If
             Throw New Exception(ex.Message)
-            Return Nothing
+            Exit Function
         End Try
     End Function
-#End Region
+
+
 
 End Class

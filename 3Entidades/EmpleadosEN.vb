@@ -1,5 +1,6 @@
 ﻿Public Class EmpleadosEN
 
+
 #Region "Propiedades"
 
     Property Cedula
@@ -73,6 +74,5 @@
 
 
 #End Region
-
 
 End Class

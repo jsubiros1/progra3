@@ -1,221 +1,162 @@
 ﻿Imports System.Data.OleDb
 Imports _3Entidades
 
+
+
+
 Public Class ActivosAD
 
-#Region "Variable para la conexion a base de datos"
-    ' Objeto que permite conectarse a la BD Access
-    Dim miConexion As New OleDbConnection("Provider = Microsoft.ACE.OLEDB.12.0; Data Source = Facturacion.accdb")
-#End Region
-
-#Region "Constructor"
+    Dim miConexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=ProyectoDB.accdb")
     Public Sub New()
-            ' Como la clase no contiene atributos, únicamente métodos, esta se podría dejar tal cual
-        End Sub
+        ' Como la clase no contiene atributos, únicamente métodos, esta se podría dejar tal cual
+    End Sub
 
-#End Region
-
-
-#Region "Funciones"
-
-
-    ''' <summary>
-    ''' Insertar un activo
-    ''' </summary>
-    ''' <param name="pActivos">Objero Activos</param>
-
-    Public Sub InsertarActivos(ByVal pActivos As ActivosEN)
-            Try
-
-                Dim strInsert As String
-                miConexion.Open()
-
-                strInsert = "INSERT INTO Activos(Cod_Activo, Descripcion, Cod_Categoria, Fec_Compra, Costo, Observaciones) 
-                        VALUES(@codActivo, @descrip, @codCat, @fechaCompra, @costo, @observaciones)"
-
-                Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
-
-                cmdInsert.Parameters.Add("@codActivo", OleDbType.VarChar).Value = pActivos.Cod_Activo
-                cmdInsert.Parameters.Add("@descrip", OleDbType.VarChar).Value = pActivos.Descripcion
-                cmdInsert.Parameters.Add("@codCat", OleDbType.Date).Value = pActivos.Cod_Categoria
-                cmdInsert.Parameters.Add("@fechaCompra", OleDbType.Date).Value = pActivos.Fec_Compra
-                cmdInsert.Parameters.Add("@costo", OleDbType.Date).Value = pActivos.Costo
-                cmdInsert.Parameters.Add("@observaciones", OleDbType.Date).Value = pActivos.Observaciones
-
-                cmdInsert.ExecuteNonQuery()
-                miConexion.Close()
-
-            Catch ex As Exception
-                If (miConexion.State = ConnectionState.Open) Then
-                    miConexion.Close()
-                End If
-                Throw New Exception(ex.Message)
-                Exit Sub
-            End Try
-        End Sub
-
-
-    ''' <summary>
-    ''' Modificar un activo
-    ''' </summary>
-    ''' <param name="pActivos">Objeto activo</param>
-
-    Public Sub ModificarActivos(ByVal pActivos As ActivosEN)
-            Try
-
-                Dim strInsert As String
-                miConexion.Open()
-
-                strInsert = "UPDATE Activos 
-                             SET(Descripcion = @descrip, Cod_Categoria = @codCat, Fec_Compra = @fechaCompra, Costo = @costo, Observaciones = @observaciones) 
-                             WHERE Cod_Activo = @codActivo"
-
-                Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
-
-                cmdInsert.Parameters.Add("@descrip", OleDbType.VarChar).Value = pActivos.Descripcion
-                cmdInsert.Parameters.Add("@codCat", OleDbType.VarChar).Value = pActivos.Cod_Categoria
-                cmdInsert.Parameters.Add("@fechaCompra", OleDbType.VarChar).Value = pActivos.Fec_Compra
-                cmdInsert.Parameters.Add("@costo", OleDbType.VarChar).Value = pActivos.Costo
-                cmdInsert.Parameters.Add("@observaciones", OleDbType.VarChar).Value = pActivos.Observaciones
-                cmdInsert.Parameters.Add("@codActivo", OleDbType.VarChar).Value = pActivos.Cod_Activo
-
-                cmdInsert.ExecuteNonQuery()
-                miConexion.Close()
-
-            Catch ex As Exception
-                If (miConexion.State = ConnectionState.Open) Then
-                    miConexion.Close()
-                End If
-                Throw New Exception(ex.Message)
-                Exit Sub
-            End Try
-        End Sub
-
-
-    ''' <summary>
-    ''' Borrar un activo
-    ''' </summary>
-    ''' <param name="pActivos">Objeto Activos</param>
-
-    Public Sub BorrarActivos(ByVal pActivos As ActivosEN)
-            Try
-                Dim strInsert As String
-                miConexion.Open()
-
-                strInsert = "DELETE * FROM Activos
-                        WHERE Cod_Activo = @cod"
-
-                Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
-
-                cmdInsert.Parameters.Add("@cod", OleDbType.VarChar).Value = pActivos.Cod_Activo
-
-                cmdInsert.ExecuteNonQuery()
-                miConexion.Close()
-
-            Catch ex As Exception
-                If (miConexion.State = ConnectionState.Open) Then
-                    miConexion.Close()
-                End If
-                Throw New Exception(ex.Message)
-                Exit Sub
-            End Try
-        End Sub
-
-
-    ''' <summary>
-    ''' Obtener un activo segun codigo
-    ''' </summary>
-    ''' <param name="pCod">Codigo del activo</param>
-    ''' <returns>Objeto Activos</returns>
-
-    Public Function ObtenerActivosPorCod(ByVal pCod As String) As ActivosEN
-
-            Dim activo As New ActivosEN
-
-            Try
-
-                Dim strSelect As String
-                miConexion.Open()
-
-                strSelect = "SELECT * FROM Activos 
-                        WHERE Cod_Asignacion = @cod"
-
-                Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
-
-                cmdSelect.Parameters.Add("@cod", OleDbType.VarChar).Value = pCod
-
-                Dim drActivo As OleDbDataReader = cmdSelect.ExecuteReader
-                While (drActivo.Read())
-
-                    activo.Cod_Activo = drActivo("Cod_Activo")
-                    activo.Descripcion = drActivo("Descripcion")
-                    activo.Cod_Categoria = drActivo("Cod_Categoria")
-                    activo.Fec_Compra = drActivo("Fec_Compra")
-                    activo.Costo = drActivo("Costo")
-                    activo.Observaciones = drActivo("Observaciones")
-
-                End While
-
-                miConexion.Close()
-                Return activo
-
-
-            Catch ex As Exception
-                If (miConexion.State = ConnectionState.Open) Then
-                    miConexion.Close()
-                End If
-                Throw New Exception(ex.Message)
-
-            End Try
-        End Function
-
-
-    ''' <summary>
-    ''' Obtener todos los activos
-    ''' </summary>
-    ''' <returns>Lista de objetos Activos</returns>
-
-    Public Function obtenerTodosActivos() As List(Of ActivosEN)
-
-        Dim activos As New List(Of ActivosEN)
-
+    Public Sub InsertarActivo(ByVal pActivo As ActivosEN)
         Try
 
-            Dim strSelect As String
             miConexion.Open()
+            Dim strInsert As String
+            strInsert = "INSERT INTO Activos(Cod_Activo,Descripcion,Cod_Categoria,Fec_Compra,Costo,Observaciones) values(@Cod_Activo,@Descripcion,@Cod_Categoria,@Fec_Compra,@Costo,@Observaciones)"
 
-            strSelect = "SELECT * FROM AsignacionActivos"
 
-            Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
-            Dim drActivo As OleDbDataReader = cmdSelect.ExecuteReader
+            Dim cmdSocio As New OleDbCommand(strInsert, miConexion)
+            cmdSocio.Parameters.Add("@Cod_Activo", OleDbType.VarChar).Value = pActivo.Cod_Activo
+            cmdSocio.Parameters.Add("@Descripcion", OleDbType.VarChar).Value = pActivo.Descripcion
+            cmdSocio.Parameters.Add("@Cod_Categoria", OleDbType.VarChar).Value = pActivo.Cod_Categoria
+            cmdSocio.Parameters.Add("@Fec_Compra", OleDbType.Boolean).Value = pActivo.Fec_Compra
+            cmdSocio.Parameters.Add("@Costo", OleDbType.Boolean).Value = pActivo.Costo
+            cmdSocio.Parameters.Add("@Observaciones", OleDbType.Boolean).Value = pActivo.Observaciones
 
-            While (drActivo.Read())
-
-                Dim act As New ActivosEN
-
-                act.Cod_Activo = drActivo("Cod_Activo")
-                act.Descripcion = drActivo("Descripcion")
-                act.Cod_Categoria = drActivo("Cod_Categoria")
-                act.Fec_Compra = drActivo("Fec_Compra")
-                act.Costo = drActivo("Costo")
-                act.Observaciones = drActivo("Observaciones")
-
-                activos.Add(act)
-
-            End While
-
+            cmdSocio.ExecuteNonQuery()
             miConexion.Close()
-            Return activos
-
         Catch ex As Exception
             If (miConexion.State = ConnectionState.Open) Then
                 miConexion.Close()
             End If
             Throw New Exception(ex.Message)
+            Exit Sub
+        End Try
+    End Sub
 
+    Public Sub ModificarActivo(ByVal pActivo As ActivosEN)
+        Try
+
+            miConexion.Open()
+            Dim strModificar As String
+
+            ''llave primaria no se cambia 
+            ''la llame va en where
+            strModificar = "UPDATE  Activos SET @Descripcion,@Cod_Categoria,@Fec_Compra,@Costo,@Observaciones WHERE @Cod_Activo=@Cod_Activo"
+
+            ''Los parametros tiene q ir en orden de la sentencia 
+            Dim cmdSocio As New OleDbCommand(strModificar, miConexion)
+
+            cmdSocio.Parameters.Add("@Descripcion", OleDbType.VarChar).Value = pActivo.Descripcion
+            cmdSocio.Parameters.Add("@Cod_Categoria", OleDbType.VarChar).Value = pActivo.Cod_Categoria
+            cmdSocio.Parameters.Add("@Fec_Compra", OleDbType.Boolean).Value = pActivo.Fec_Compra
+            cmdSocio.Parameters.Add("@Costo", OleDbType.Boolean).Value = pActivo.Costo
+            cmdSocio.Parameters.Add("@Observaciones", OleDbType.VarChar).Value = pActivo.Observaciones
+            cmdSocio.Parameters.Add("@Cod_Activo", OleDbType.VarChar).Value = pActivo.Cod_Activo
+            cmdSocio.ExecuteNonQuery()
+            miConexion.Close()
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+            Exit Sub
+        End Try
+    End Sub
+
+    Public Sub BorrarActivo(ByVal pActivo As ActivosEN)
+        Try
+            miConexion.Open()
+            Dim strborrar As String
+            strborrar = "DELETE FROM Activos Cod_Activo =@ Cod_Activo"
+            Dim cmdSocio As New OleDbCommand(strborrar, miConexion)
+
+            cmdSocio.Parameters.Add("@Cedula", OleDbType.VarWChar).Value = pActivo.Cod_Activo
+
+
+
+
+            cmdSocio.ExecuteNonQuery()
+
+
+            miConexion.Close()
+
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+            Exit Sub
+        End Try
+    End Sub
+
+    Public Function ObtenerActivoPorCod(ByVal pCod As String) As ActivosEN
+        Try
+
+            miConexion.Open()
+            Dim strSelect As String
+            strSelect = "SELECT Cod_Activo,Descripcion,Cod_Categoria,Fec_Compra,Costo,Observaciones FROM Activos WHERE Cod_Activo=@Cod_Activo"
+            Dim cmdSocio As New OleDbCommand(strSelect, miConexion)
+
+            cmdSocio.Parameters.Add("@Cod_Activo", OleDbType.VarChar).Value = pCod
+
+            Dim myUser As ActivosEN = Nothing
+            Dim drUser As OleDbDataReader = cmdSocio.ExecuteReader()
+
+            While (drUser.Read())
+                myUser = New ActivosEN
+                myUser.cod_Activo = drUser("Cod_Activo")
+                myUser.Descripcion = drUser("Descripcion")
+                myUser.Cod_Categoria = drUser("Cod_Categoria")
+                myUser.fec_Compra = drUser("Fec_Compra")
+                myUser.costo = drUser("Costo")
+                myUser.observaciones = drUser("Observaciones")
+
+
+            End While
+            drUser.Close()
+            miConexion.Close()
+            Return myUser
+
+
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+            Exit Function
         End Try
     End Function
 
-#End Region
+    Public Function obtenerTodosActivos() As List(Of ActivosEN)
+        Try
+            miConexion.Open()
+
+            Dim strSelect As String
+            strSelect = "Cod_Activo,Descripcion,Cod_Categoria,Fec_Compra,Costo,Observaciones FROM Activos WHERE "
+
+            Dim cmdSocio As New OleDbCommand(strSelect, miConexion)
+
+
+            Dim lstSocios As New List(Of ActivosEN)
+            Dim drUser As OleDbDataReader = cmdSocio.ExecuteReader()
+            While (drUser.Read())
+                Dim myUser As New ActivosEN
+                myUser.Cod_Activo = drUser("Cod_Activo")
+                myUser.Descripcion = drUser("Descripcion")
+                myUser.Cod_Categoria = drUser("Cod_Categoria")
+                myUser.Fec_Compra = drUser("Fec_Compra")
+                myUser.Costo = drUser("Costo")
+                myUser.Observaciones = drUser("Observaciones")
+                lstSocios.Add(myUser)
+            End While
+            drUser.Close()
+            miConexion.Close()
+            Return lstSocios 'se retorna la lista 
+        Catch ex As Exception
+            If (miConexion.State = ConnectionState.Open) Then
+                miConexion.Close()
+            End If
+            Throw New Exception(ex.Message)
+            Exit Function
+        End Try
+    End Function
+
+
 
 End Class

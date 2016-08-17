@@ -1,46 +1,34 @@
-﻿Imports System.Data.OleDb
+﻿
+Imports System.Data.OleDb
 Imports _3Entidades
 
-Public Class AsignacionActivosAD
-#Region "Variable para la conexion a base de datos"
-    ' Objeto que permite conectarse a la BD Access
-    Dim miConexion As New OleDbConnection("Provider = Microsoft.ACE.OLEDB.12.0; Data Source = Facturacion.accdb")
-#End Region
 
-#Region "Constructor"
+
+Public Class AsignacionActivosAD
+
+    Dim miConexion As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=ProyectoDB.accdb")
     Public Sub New()
         ' Como la clase no contiene atributos, únicamente métodos, esta se podría dejar tal cual
     End Sub
-#End Region
 
-#Region "Funciones"
-
-    ''' <summary>
-    ''' Insertar nueva asignacion de activos
-    ''' </summary>
-    ''' <param name="pAsignacionActivos">Objerto asignacion de activos</param>
-
-    Public Sub InsertarAsignacionActivos(ByVal pAsignacionActivos As AsignacionActivosEN)
+    Public Sub InsertarAsignacion(ByVal pAsignacion As AsignacionActivosEN)
         Try
 
-            Dim strInsert As String
             miConexion.Open()
+            Dim strInsert As String
+            strInsert = "INSERT INTO AsignacionesActivo(Cod_Asignacion,Cod_Activo,Cedula,Fec_Asignacion,Observaciones,Usuario_Asigno) values(@Cod_Asignacion,@Cod_Activo,@Cedula,@Fec_Asignacion,@Observaciones,@Usuario_Asigno)"
 
-            strInsert = "INSERT INTO AsignacionActivos(Cod_Asignacion, Cedula, Cod_Activo, Fec_Asignacion, Observaciones, Usuario_Asigno) 
-                        VALUES(@codAsig, @ced, @codActivo, @fecha, @observaiones, @usrAsigno)"
 
-            Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
+            Dim cmdSocio As New OleDbCommand(strInsert, miConexion)
+            cmdSocio.Parameters.Add("@Cod_Asignacion", OleDbType.VarChar).Value = pAsignacion.Cod_Asignacion
+            cmdSocio.Parameters.Add("@Cod_Activo", OleDbType.VarChar).Value = pAsignacion.Cod_Activo
+            cmdSocio.Parameters.Add("@Cedula", OleDbType.VarChar).Value = pAsignacion.Cedula
+            cmdSocio.Parameters.Add("@Fec_Asignacion", OleDbType.Date).Value = pAsignacion.Fec_Asignacion
+            cmdSocio.Parameters.Add("@Observaciones", OleDbType.Boolean).Value = pAsignacion.Observaciones
+            cmdSocio.Parameters.Add("@Usuario_Asigno", OleDbType.Boolean).Value = pAsignacion.Usuario_Asigno
 
-            cmdInsert.Parameters.Add("@codAsig", OleDbType.VarChar).Value = pAsignacionActivos.Cod_Asignacion
-            cmdInsert.Parameters.Add("@ced", OleDbType.VarChar).Value = pAsignacionActivos.Cedula
-            cmdInsert.Parameters.Add("@codActivo", OleDbType.Date).Value = pAsignacionActivos.Cod_Activo
-            cmdInsert.Parameters.Add("@fecha", OleDbType.Date).Value = pAsignacionActivos.Fec_Asignacion
-            cmdInsert.Parameters.Add("@observaciones", OleDbType.Date).Value = pAsignacionActivos.Observaciones
-            cmdInsert.Parameters.Add("@userAsigno", OleDbType.Date).Value = pAsignacionActivos.Usuario_Asigno
-
-            cmdInsert.ExecuteNonQuery()
+            cmdSocio.ExecuteNonQuery()
             miConexion.Close()
-
         Catch ex As Exception
             If (miConexion.State = ConnectionState.Open) Then
                 miConexion.Close()
@@ -50,166 +38,126 @@ Public Class AsignacionActivosAD
         End Try
     End Sub
 
-    ''' <summary>
-    ''' Modificar asignacion de activos
-    ''' </summary>
-    ''' <param name="pAsignacionActivos">Objeto AsignacionActivos</param>
-
-    Public Sub ModificarAsignacionActivos(ByVal pAsignacionActivos As AsignacionActivosEN)
+    Public Sub ModificarAsignacion(ByVal pAsignacion As AsignacionActivosEN)
         Try
-            Dim strInsert As String
+
             miConexion.Open()
+            Dim strModificar As String
 
-            strInsert = "UPDATE AsignacionActivos SET(Cedula = @ced, Cod_Activo = @codAct, Fec_Asignacion = @fecha, Observaciones = @observaciones, Usuario_Asigno = @usuarioAsigno) 
-                        WHERE Cod_Asigancion = @codAsign"
+            ''llave primaria no se cambia 
+            ''la llame va en where
+            strModificar = "UPDATE  AsignacionesActivo SET @Cod_Activo,@Cedula,@Fec_Asignacion,@Observaciones,@Usuario_Asigno WHERE Cod_Asignacion=@Cod_Asignacion"
 
-            Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
+            ''Los parametros tiene q ir en orden de la sentencia 
+            Dim cmdSocio As New OleDbCommand(strModificar, miConexion)
 
-            cmdInsert.Parameters.Add("@ced", OleDbType.VarChar).Value = pAsignacionActivos.Cedula
-            cmdInsert.Parameters.Add("@codAct", OleDbType.VarChar).Value = pAsignacionActivos.Cod_Activo
-            cmdInsert.Parameters.Add("@fecha", OleDbType.VarChar).Value = pAsignacionActivos.Fec_Asignacion
-            cmdInsert.Parameters.Add("@observaciones", OleDbType.VarChar).Value = pAsignacionActivos.Observaciones
-            cmdInsert.Parameters.Add("@usuarioAsigno", OleDbType.VarChar).Value = pAsignacionActivos.Usuario_Asigno
-            cmdInsert.Parameters.Add("@codAsign", OleDbType.VarChar).Value = pAsignacionActivos.Cod_Asignacion
-
-            cmdInsert.ExecuteNonQuery()
+            cmdSocio.Parameters.Add("@Cod_Activo", OleDbType.VarChar).Value = pAsignacion.Cod_Activo
+            cmdSocio.Parameters.Add("@Cedula", OleDbType.VarChar).Value = pAsignacion.Cedula
+            cmdSocio.Parameters.Add("@Fec_Asignacion", OleDbType.Boolean).Value = pAsignacion.Fec_Asignacion
+            cmdSocio.Parameters.Add("@Observaciones", OleDbType.Boolean).Value = pAsignacion.Observaciones
+            cmdSocio.Parameters.Add("@Usuario_Asigno", OleDbType.VarChar).Value = pAsignacion.Usuario_Asigno
+            cmdSocio.Parameters.Add("@Cod_Asignacion", OleDbType.VarChar).Value = pAsignacion.Cod_Asignacion
+            cmdSocio.ExecuteNonQuery()
             miConexion.Close()
-
         Catch ex As Exception
-            If (miConexion.State = ConnectionState.Open) Then
-                miConexion.Close()
-            End If
             Throw New Exception(ex.Message)
             Exit Sub
         End Try
     End Sub
 
-
-    ''' <summary>
-    ''' Borrar asignacion de activos
-    ''' </summary>
-    ''' <param name="pAsignacionActivos">Objerto asignacion de activos</param>
-
-    Public Sub BorrarAsignacionActivos(ByVal pAsignacionActivos As AsignacionActivosEN)
+    Public Sub BorrarAsignacion(ByVal pAsignacion As AsignacionActivosEN)
         Try
-            Dim strInsert As String
             miConexion.Open()
+            Dim strborrar As String
+            strborrar = "DELETE FROM AsignacionesActivo Cod_Asignacion =@Cod_Asignacion"
+            Dim cmdSocio As New OleDbCommand(strborrar, miConexion)
 
-            strInsert = "DELETE * FROM AsignacionActivo 
-                        WHERE Cod_Asignacion = @cod"
+            cmdSocio.Parameters.Add("@Cod_Asignacion", OleDbType.VarWChar).Value = pAsignacion.Cod_Asignacion
 
-            Dim cmdInsert As New OleDbCommand(strInsert, miConexion)
 
-            cmdInsert.Parameters.Add("@cod", OleDbType.VarChar).Value = pAsignacionActivos.Cod_Asignacion
 
-            cmdInsert.ExecuteNonQuery()
+
+            cmdSocio.ExecuteNonQuery()
+
+
             miConexion.Close()
 
         Catch ex As Exception
-            If (miConexion.State = ConnectionState.Open) Then
-                miConexion.Close()
-            End If
             Throw New Exception(ex.Message)
             Exit Sub
         End Try
     End Sub
 
-
-    ''' <summary>
-    ''' Obtener una asignacion de activo por codigo
-    ''' </summary>
-    ''' <param name="pCod">Codigo de la asignacion del activo</param>
-    ''' <returns>Objerto AsignacionActivos</returns>
-
-    Public Function ObtenerAsignacionActivosPorCod(ByVal pCod As String) As AsignacionActivosEN
-
-        Dim asignacionActivo As New AsignacionActivosEN
-
+    Public Function ObtenerAsignacionPorCodAsig(ByVal pCod As String) As AsignacionActivosEN
         Try
 
+            miConexion.Open()
             Dim strSelect As String
-            miConexion.Open()
+            strSelect = "SELECT Cod_Asignacion,Cod_Activo,Cedula,Fec_Asignacion,Observaciones,Usuario_Asigno FROM AsignacionesActivo WHERE Cod_Asignacion=@Cod_Asignacion"
+            Dim cmdSocio As New OleDbCommand(strSelect, miConexion)
 
-            strSelect = "SELECT * FROM AsignacionActivos 
-                        WHERE Cod_Asignacion = @cod"
+            cmdSocio.Parameters.Add("@Cod_Asignacion", OleDbType.VarChar).Value = pCod
 
-            Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
+            Dim myUser As AsignacionActivosEN = Nothing
+            Dim drUser As OleDbDataReader = cmdSocio.ExecuteReader()
 
-            cmdSelect.Parameters.Add("@cod", OleDbType.VarChar).Value = pCod
-
-            Dim drAsignActiv As OleDbDataReader = cmdSelect.ExecuteReader
-            While (drAsignActiv.Read())
-
-                asignacionActivo.Cod_Asignacion = drAsignActiv("Cod_Asignacion")
-                asignacionActivo.Cedula = drAsignActiv("Cedula")
-                asignacionActivo.Cod_Activo = drAsignActiv("Cod_Activo")
-                asignacionActivo.Fec_Asignacion = drAsignActiv("Fec_Asignacion")
-                asignacionActivo.Observaciones = drAsignActiv("Observaciones")
-                asignacionActivo.Usuario_Asigno = drAsignActiv("Usuario_Asigno")
+            While (drUser.Read())
+                myUser = New AsignacionActivosEN
+                myUser.Cod_Asignacion = drUser("Cod_Asignacion")
+                myUser.Cod_Activo = drUser("Cod_Activo")
+                myUser.Cedula = drUser("Cedula")
+                myUser.Fec_Asignacion = drUser("Fec_Asignacion")
+                myUser.Observaciones = drUser("Observaciones")
+                myUser.Usuario_Asigno = drUser("Usuario_Asigno")
 
 
             End While
-
+            drUser.Close()
             miConexion.Close()
-            Return asignacionActivo
+            Return myUser
 
 
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+            Exit Function
+        End Try
+    End Function
+
+    Public Function obtenerTodosAsignacion() As List(Of AsignacionActivosEN)
+        Try
+            miConexion.Open()
+
+            Dim strSelect As String
+            strSelect = "SELECT Cod_Asignacion,Cod_Activo,Cedula,Fec_Asignacion,Observaciones,Usuario_Asigno FROM AsignacionesActivo  "
+
+            Dim cmdSocio As New OleDbCommand(strSelect, miConexion)
+
+
+            Dim lstSocios As New List(Of AsignacionActivosEN)
+            Dim drUser As OleDbDataReader = cmdSocio.ExecuteReader()
+            While (drUser.Read())
+                Dim myUser As New AsignacionActivosEN
+                myUser.cod_asignacion = drUser("Cod_Asignacion")
+                myUser.Cod_Activo = drUser("Cod_Activo")
+                myUser.cedula = drUser("Cedula")
+                myUser.fec_Asignacion = drUser("Fec_Asignacion")
+                myUser.Observaciones = drUser("Observaciones")
+                myUser.Usuario_Asigno = drUser("Usuario_Asigno")
+
+                lstSocios.Add(myUser)
+            End While
+            drUser.Close()
+            miConexion.Close()
+            Return lstSocios
         Catch ex As Exception
             If (miConexion.State = ConnectionState.Open) Then
                 miConexion.Close()
             End If
             Throw New Exception(ex.Message)
-
+            Exit Function
         End Try
     End Function
 
 
-    ''' <summary>
-    ''' Obtener todas las asicnaciones de activos
-    ''' </summary>
-    ''' <returns>Lista de objetos AsignacionActivos</returns>
-
-    Public Function obtenerTodosAsignacionActivos() As List(Of AsignacionActivosEN)
-
-        Dim asignacionActiv As New List(Of AsignacionActivosEN)
-
-        Try
-
-            Dim strSelect As String
-            miConexion.Open()
-
-            strSelect = "SELECT * FROM AsignacionActivos"
-
-            Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
-            Dim drAsignActiv As OleDbDataReader = cmdSelect.ExecuteReader
-
-            While (drAsignActiv.Read())
-
-                Dim aa As New AsignacionActivosEN
-
-                aa.Cod_Asignacion = drAsignActiv("Cod_Asignacion")
-                aa.Cedula = drAsignActiv("Cedula")
-                aa.Cod_Activo = drAsignActiv("Cod_Activo")
-                aa.Fec_Asignacion = drAsignActiv("Fec_Asignacion")
-                aa.Observaciones = drAsignActiv("Observaciones")
-                aa.Usuario_Asigno = drAsignActiv("Usuario_Asigno")
-
-                asignacionActiv.Add(aa)
-
-            End While
-
-            miConexion.Close()
-            Return asignacionActiv
-
-        Catch ex As Exception
-            If (miConexion.State = ConnectionState.Open) Then
-                miConexion.Close()
-            End If
-            Throw New Exception(ex.Message)
-
-        End Try
-    End Function
-
-#End Region
 
 End Class

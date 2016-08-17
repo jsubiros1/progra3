@@ -1,15 +1,15 @@
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\bin\Debug\2LogicaNegocios.dll
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\bin\Debug\2LogicaNegocios.pdb
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\bin\Debug\2LogicaNegocios.xml
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\bin\Debug\1AccesoADatos.dll
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\bin\Debug\3Entidades.dll
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\bin\Debug\1AccesoADatos.pdb
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\bin\Debug\1AccesoADatos.xml
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\bin\Debug\3Entidades.pdb
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\bin\Debug\3Entidades.xml
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\obj\Debug\2LogicaNegocios.vbprojResolveAssemblyReference.cache
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\obj\Debug\_2LogicaNegocios.Resources.resources
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\obj\Debug\2LogicaNegocios.vbproj.GenerateResource.Cache
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\obj\Debug\2LogicaNegocios.dll
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\obj\Debug\2LogicaNegocios.xml
-E:\s\Progra3\proyectoFinal\ProyectoControl\2LogicaNegocios\obj\Debug\2LogicaNegocios.pdb
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\bin\Debug\2LogicaNegocios.dll
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\bin\Debug\2LogicaNegocios.pdb
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\bin\Debug\2LogicaNegocios.xml
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\bin\Debug\1AccesoADatos.dll
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\bin\Debug\3Entidades.dll
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\bin\Debug\1AccesoADatos.pdb
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\bin\Debug\1AccesoADatos.xml
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\bin\Debug\3Entidades.pdb
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\bin\Debug\3Entidades.xml
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\obj\Debug\2LogicaNegocios.vbprojResolveAssemblyReference.cache
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\obj\Debug\_2LogicaNegocios.Resources.resources
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\obj\Debug\2LogicaNegocios.vbproj.GenerateResource.Cache
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\obj\Debug\2LogicaNegocios.dll
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\obj\Debug\2LogicaNegocios.xml
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\2LogicaNegocios\obj\Debug\2LogicaNegocios.pdb

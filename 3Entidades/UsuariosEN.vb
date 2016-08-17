@@ -1,5 +1,4 @@
 ﻿Public Class UsuariosEN
-
 #Region "Atributos"
 
     Property login

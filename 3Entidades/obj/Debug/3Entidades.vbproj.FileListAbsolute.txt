@@ -1,9 +1,9 @@
-E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\bin\Debug\3Entidades.dll
-E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\bin\Debug\3Entidades.pdb
-E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\bin\Debug\3Entidades.xml
-E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\obj\Debug\3Entidades.vbprojResolveAssemblyReference.cache
-E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\obj\Debug\_3Entidades.Resources.resources
-E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\obj\Debug\3Entidades.vbproj.GenerateResource.Cache
-E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\obj\Debug\3Entidades.dll
-E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\obj\Debug\3Entidades.xml
-E:\s\Progra3\proyectoFinal\ProyectoControl\3Entidades\obj\Debug\3Entidades.pdb
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\3Entidades\bin\Debug\3Entidades.dll
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\3Entidades\bin\Debug\3Entidades.pdb
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\3Entidades\bin\Debug\3Entidades.xml
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\3Entidades\obj\Debug\3Entidades.vbprojResolveAssemblyReference.cache
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\3Entidades\obj\Debug\_3Entidades.Resources.resources
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\3Entidades\obj\Debug\3Entidades.vbproj.GenerateResource.Cache
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\3Entidades\obj\Debug\3Entidades.dll
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\3Entidades\obj\Debug\3Entidades.xml
+C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\3Entidades\obj\Debug\3Entidades.pdb
