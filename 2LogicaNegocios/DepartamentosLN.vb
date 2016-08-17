@@ -4,71 +4,85 @@ Imports _3Entidades
 
 Public Class DepartamentosLN
 
-
+#Region "Constructor"
 
     Public Sub New()
         ' Como la clase no contiene atributos, únicamente métodos, esta se podría dejar tal cual
     End Sub
+#End Region
 
+
+#Region "Funciones"
+
+
+    ''' <summary>
+    ''' Insertar un nuevo departamento
+    ''' </summary>
+    ''' <param name="pDepartamento">Objeto departamento</param>
+    ''' 
     Public Sub InsertarDepartamento(ByVal pDepartamento As DepartamentosEN)
         Try
             If (pDepartamento.Cod_Dept.Trim().Length = 0) Then
-                Throw New Exception("El Login es obligatoria")
+                Throw New Exception("El codigo del dpto es obligatorio")
+            End If
+
+            Dim dpto As New DepartamentosAD
+
+            If Not IsNothing(dpto.ObtenerDepartamentoPorCod(pDepartamento.Cod_Dept)) Then
+                Throw New Exception("Este departamento ya existe")
 
             End If
 
-
-            Dim socAcceso As New DepartamentosAD
-
-            If Not IsNothing(socAcceso.ObtenerSocioPorCodDepartamento(pDepartamento.Cod_Dept)) Then
-                Throw New Exception("Ese Usuario ya Existe")
-
-            End If
-
-            socAcceso.InsertarDepartamento(pDepartamento)
-
+            dpto.InsertarDepartamento(pDepartamento)
 
         Catch ex As Exception
             Throw New Exception(ex.Message)
             Exit Sub
         End Try
     End Sub
+
+    ''' <summary>
+    ''' Modificar departamento
+    ''' </summary>
+    ''' <param name="pDepartamento">Objeto departamento</param>
 
     Public Sub ModificarDepartamento(ByVal pDepartamento As DepartamentosEN)
         Try
 
             If (pDepartamento.Cod_Dept.Trim().Length = 0) Then
-                Throw New Exception("El login es obligatorio")
-
+                Throw New Exception("El codigo es obligatorio")
             End If
 
+            Dim dpto As New DepartamentosAD
 
-            Dim userAcceso As New DepartamentosAD
-
-            If IsNothing(userAcceso.ObtenerSocioPorCodDepartamento(pDepartamento.Cod_Dept)) Then
-                Throw New Exception("Ese Usuario NO  Existe")
-
+            If IsNothing(dpto.ObtenerDepartamentoPorCod(pDepartamento.Cod_Dept)) Then
+                Throw New Exception("Este departamento no existe")
             End If
-            userAcceso.ModificarDepartamento(pDepartamento)
+
+            dpto.ModificarDepartamento(pDepartamento)
 
         Catch ex As Exception
             Throw New Exception(ex.Message)
             Exit Sub
         End Try
     End Sub
+
+
+    ''' <summary>
+    ''' Borrar departamento
+    ''' </summary>
+    ''' <param name="pDepartamento">Objeto departamento</param>
 
     Public Sub BorrarDepartamento(ByVal pDepartamento As DepartamentosEN)
         Try
 
+            Dim dpto As New DepartamentosAD
 
-            Dim SocAcceso As New DepartamentosAD
-
-
-            If IsNothing(SocAcceso.ObtenerSocioPorCodDepartamento(pDepartamento.Cod_Dept)) Then
-                Throw New Exception("Ese Usuario no existe")
+            If IsNothing(dpto.ObtenerDepartamentoPorCod(pDepartamento.Cod_Dept)) Then
+                Throw New Exception("Este departamento no existe")
             End If
 
-            SocAcceso.BorrarDepartamento(pDepartamento)
+            dpto.BorrarDepartamento(pDepartamento)
 
         Catch ex As Exception
             Throw New Exception(ex.Message)
@@ -76,31 +90,39 @@ Public Class DepartamentosLN
         End Try
     End Sub
 
-    Public Function ObtenerSocioPorCodDepartamento(ByVal pCod As String) As DepartamentosEN
-        Try
+    'No se que hace esta funcion
+    ''Public Function ObtenerSocioPorCodDepartamento(ByVal pCod As String) As DepartamentosEN
+    ''Try
+    ''
+    ''If (pCod.Trim().Length = 0) Then
+    ''Throw New Exception("El Login es obligatorio")
+    ''End If
+    ''
+    '' Dim userAcceso As New DepartamentosAD
+    ''Return userAcceso.ObtenerSocioPorCodDepartamento(pCod)
+    ''
+    ''Catch ex As Exception
+    ''Throw New Exception(ex.Message)
+    ''Exit Function
+    ''End Try
+    'End Function
 
-            If (pCod.Trim().Length = 0) Then
-                Throw New Exception("El Login es obligatorio")
-            End If
 
-            Dim userAcceso As New DepartamentosAD
-            Return userAcceso.ObtenerSocioPorCodDepartamento(pCod)
-
-        Catch ex As Exception
-            Throw New Exception(ex.Message)
-            Exit Function
-        End Try
-    End Function
+    ''' <summary>
+    ''' Obtener todos los departamentos
+    ''' </summary>
+    ''' <returns>Lista de objeto departamentos</returns>
 
     Public Function obtenerTodosDepartamentos() As List(Of DepartamentosEN)
         Try
-            Dim SocAcceso As New DepartamentosAD
-            Return SocAcceso.obtenerTodosDepartamentos
+            Dim dpts As New DepartamentosAD
+            Return dpts.obtenerTodosDepartamentos
         Catch ex As Exception
             Throw New Exception(ex.Message)
             Exit Function
         End Try
     End Function
 
+#End Region
 
 End Class

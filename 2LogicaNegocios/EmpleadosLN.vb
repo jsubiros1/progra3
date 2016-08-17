@@ -4,70 +4,82 @@ Imports _1AccesoADatos
 Imports _3Entidades
 Public Class EmpleadosLN
 
-
+#Region "Cobstructor"
     Public Sub New()
         ' Como la clase no contiene atributos, únicamente métodos, esta se podría dejar tal cual
     End Sub
+#End Region
+
+
+#Region "Funciones"
+
+    ''' <summary>
+    ''' Insertar un empleado
+    ''' </summary>
+    ''' <param name="pEmpleado">Objeto empleado</param>
 
     Public Sub InsertarEmpleado(ByVal pEmpleado As EmpleadosEN)
         Try
             If (pEmpleado.Cedula.Trim().Length = 0) Then
                 Throw New Exception("El Login es obligatoria")
-
             End If
 
+            Dim emp As New EmpleadosAD
 
-            Dim socAcceso As New EmpleadosAD
-
-            If Not IsNothing(socAcceso.ObtenerEmpleadosPorCedula(pEmpleado.Cedula)) Then
+            If Not IsNothing(emp.ObtenerEmpleadoPorCedula(pEmpleado.Cedula)) Then
                 Throw New Exception("Ese Usuario ya Existe")
-
             End If
 
-            socAcceso.InsertarEmpleado(pEmpleado)
-
+            emp.InsertarEmpleado(pEmpleado)
 
         Catch ex As Exception
             Throw New Exception(ex.Message)
             Exit Sub
         End Try
     End Sub
+
+    ''' <summary>
+    ''' Modificar un empleado
+    ''' </summary>
+    ''' <param name="pEmpleado">Objerto empleado</param>
 
     Public Sub ModificarEmpleado(ByVal pEmpleado As EmpleadosEN)
         Try
 
             If (pEmpleado.Cedula.Trim().Length = 0) Then
-                Throw New Exception("El login es obligatorio")
-
+                Throw New Exception("No se ha insertado cedula")
             End If
 
+            Dim usr As New EmpleadosAD
 
-            Dim userAcceso As New EmpleadosAD
-
-            If IsNothing(userAcceso.ObtenerEmpleadosPorCedula(pEmpleado.Cedula)) Then
+            If IsNothing(usr.ObtenerEmpleadoPorCedula(pEmpleado.Cedula)) Then
                 Throw New Exception("Ese Usuario NO  Existe")
 
             End If
-            userAcceso.ModificarEmpleado(pEmpleado)
+            usr.ModificarEmpleado(pEmpleado)
 
         Catch ex As Exception
             Throw New Exception(ex.Message)
             Exit Sub
         End Try
     End Sub
+
+
+    ''' <summary>
+    ''' Borrar epleado
+    ''' </summary>
+    ''' <param name="pEmpleado">Objeto empleado</param>
 
     Public Sub BorrarEmpleado(ByVal pEmpleado As EmpleadosEN)
         Try
 
+            Dim emp As New EmpleadosAD
 
-            Dim SocAcceso As New EmpleadosAD
-
-
-            If IsNothing(SocAcceso.ObtenerEmpleadosPorCedula(pEmpleado.Cedula)) Then
-                Throw New Exception("Ese Usuario no existe")
+            If IsNothing(emp.ObtenerEmpleadoPorCedula(pEmpleado.Cedula)) Then
+                Throw New Exception("Este empleado no existe")
             End If
 
-            SocAcceso.BorrarEmpleado(pEmpleado)
+            emp.BorrarEmpleado(pEmpleado)
 
         Catch ex As Exception
             Throw New Exception(ex.Message)
@@ -75,15 +87,21 @@ Public Class EmpleadosLN
         End Try
     End Sub
 
-    Public Function ObtenerEmpleadosPorCedula(ByVal pCedula As String) As EmpleadosEN
+    ''' <summary>
+    ''' Obtener empleado por cedula
+    ''' </summary>
+    ''' <param name="pCedula"></param>
+    ''' <returns></returns>
+
+    Public Function ObtenerEmpleadoPorCedula(ByVal pCedula As String) As EmpleadosEN
         Try
 
             If (pCedula.Trim().Length = 0) Then
-                Throw New Exception("El Login es obligatorio")
+                Throw New Exception("La cedula es obligatroria")
             End If
 
-            Dim userAcceso As New EmpleadosAD
-            Return userAcceso.ObtenerEmpleadosPorCedula(pCedula)
+            Dim usr As New EmpleadosAD
+            Return usr.ObtenerEmpleadoPorCedula(pCedula)
 
         Catch ex As Exception
             Throw New Exception(ex.Message)
@@ -91,7 +109,13 @@ Public Class EmpleadosLN
         End Try
     End Function
 
-    Public Function obtenerTodosEmpleados() As List(Of EmpleadosEN)
+
+    ''' <summary>
+    ''' Obtener todos los empleados
+    ''' </summary>
+    ''' <returns>Lista de objeto Empleado</returns>
+
+    Public Function obtenerTodosLosEmpleados() As List(Of EmpleadosEN)
         Try
             Dim SocAcceso As New EmpleadosAD
             Return SocAcceso.obtenerTodosEmpleados
@@ -100,5 +124,7 @@ Public Class EmpleadosLN
             Exit Function
         End Try
     End Function
+
+#End Region
 
 End Class

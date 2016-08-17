@@ -3,19 +3,20 @@ Imports _3Entidades
 
 Public Class UsuariosLN
 
-
+#Region "Cobstructor"
     Public Sub New()
             ' Como la clase no contiene atributos, únicamente métodos, esta se podría dejar tal cual
         End Sub
+#End Region
 
 
-
+#Region "Funciones"
     ''' <summary>
     ''' Inserta un usuario
     ''' </summary>
-    ''' <param name="pUsuarios"></param>
-    Public Sub InsertarUsuarios(ByVal pUsuarios As UsuariosEN)
-            Try
+    ''' <param name="pUsuarios">Objeto Usuario</param>
+    Public Sub InsertarUsuario(ByVal pUsuarios As UsuariosEN)
+        Try
             If (pUsuarios.login.Trim().Length = 0) Then
                 Throw New Exception("El Login es obligatoria")
 
@@ -30,84 +31,103 @@ Public Class UsuariosLN
 
             usuario.InsertarUsuario(pUsuarios)
 
-
-
         Catch ex As Exception
-                Throw New Exception(ex.Message)
-                Exit Sub
-            End Try
-        End Sub
+            Throw New Exception(ex.Message)
+            Exit Sub
+        End Try
+    End Sub
 
-        Public Sub ModificarUsuarios(ByVal pUsuarios As UsuariosEN)
-            Try
+    ''' <summary>
+    ''' Modificar usuario
+    ''' </summary>
+    ''' <param name="pUsuarios">Objeto Usuario</param>
+
+
+    Public Sub ModificarUsuario(ByVal pUsuarios As UsuariosEN)
+        Try
 
             If (pUsuarios.login.Trim().Length = 0) Then
                 Throw New Exception("El login es obligatorio")
-
             End If
 
+            Dim user As New UsuariosAD
 
-            Dim userAcceso As New UsuariosAD
-
-            If IsNothing(userAcceso.ObtenerUsuariosPorLogin(pUsuarios.login)) Then
-                Throw New Exception("Ese Usuario NO  Existe")
+            If IsNothing(user.ObtenerUsuarioPorLogin(pUsuarios.login)) Then
+                Throw New Exception("Este Usuario NO  Existe")
 
             End If
-            userAcceso.ModificarUsuarios(pUsuarios)
+            user.ModificarUsuario(pUsuarios)
 
 
         Catch ex As Exception
-                Throw New Exception(ex.Message)
-                Exit Sub
-            End Try
-        End Sub
-
-        Public Sub BorrarUsuarios(ByVal pUsuarios As UsuariosEN)
-            Try
+            Throw New Exception(ex.Message)
+            Exit Sub
+        End Try
+    End Sub
 
 
-            Dim SocAcceso As New UsuariosAD
+    ''' <summary>
+    ''' Borrar Usuario
+    ''' </summary>
+    ''' <param name="pUsuarios"></param>
+
+    Public Sub BorrarUsuario(ByVal pUsuarios As UsuariosEN)
+        Try
+
+            Dim usr As New UsuariosAD
 
 
-            If IsNothing(SocAcceso.ObtenerUsuariosPorLogin(pUsuarios.login)) Then
+            If IsNothing(usr.ObtenerUsuarioPorLogin(pUsuarios.login)) Then
                 Throw New Exception("Ese Usuario no existe")
             End If
 
-            SocAcceso.BorrarUsuarios(pUsuarios)
+            usr.BorrarUsuario(pUsuarios)
 
         Catch ex As Exception
-                Throw New Exception(ex.Message)
-                Exit Sub
-            End Try
-        End Sub
+            Throw New Exception(ex.Message)
+            Exit Sub
+        End Try
+    End Sub
 
-        Public Function ObtenerUsuariosPorLogin(ByVal pLogin As String) As UsuariosEN
-            Try
+    ''' <summary>
+    ''' Obtener un usuario por login
+    ''' </summary>
+    ''' <param name="pLogin">String nombre de usuario</param>
+    ''' <returns>Objeto Usuario</returns>
+
+    Public Function ObtenerUsuarioPorLogin(ByVal pLogin As String) As UsuariosEN
+        Try
 
             If (pLogin.Trim().Length = 0) Then
                 Throw New Exception("El login es obligatorio")
             Else
                 Dim myUserAD As New UsuariosAD
-                Return myUserAD.ObtenerUsuariosPorLogin(pLogin)
+                Return myUserAD.ObtenerUsuarioPorLogin(pLogin)
             End If
 
         Catch ex As Exception
-                    Throw New Exception(ex.Message)
-                Exit Function
-            End Try
-        End Function
+            Throw New Exception(ex.Message)
+            Exit Function
+        End Try
+    End Function
 
-        Public Function obtenerTodosUsuarioss() As List(Of UsuariosEN)
-            Try
-            Dim SocAcceso As New UsuariosAD
-            Return SocAcceso.obtenerTodosUsuarioss
+
+    ''' <summary>
+    ''' Obtener todos los usuarios
+    ''' </summary>
+    ''' <returns>Lista de objetos de usuarios</returns>
+
+    Public Function obtenerTodoLosUsuarios() As List(Of UsuariosEN)
+        Try
+            Dim usr As New UsuariosAD
+            Return usr.obtenerTodosUsuarios
 
         Catch ex As Exception
-                Throw New Exception(ex.Message)
-                Exit Function
-            End Try
-        End Function
+            Throw New Exception(ex.Message)
+            Exit Function
+        End Try
+    End Function
 
+#End Region
 
-
-    End Class
+End Class

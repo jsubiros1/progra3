@@ -6,6 +6,150 @@
 </name>
 </assembly>
 <members>
+<member name="M:_2LogicaNegocios.ActivosLN.InsertarActivo(_3Entidades.ActivosEN)">
+ <summary>
+ Insertar un nuevo activo
+ </summary>
+ <param name="pActivo">Objeto Activo</param>
+</member>
+<member name="M:_2LogicaNegocios.ActivosLN.ModificarActivo(_3Entidades.ActivosEN)">
+ <summary>
+ Modificar activo
+ </summary>
+ <param name="pActivo">Objeto de tipo Activo</param>
+</member>
+<member name="M:_2LogicaNegocios.ActivosLN.ObtenerActivoPorCod(System.String)">
+ <summary>
+ Obtener activo por codigo
+ </summary>
+ <param name="pCod">String codigo de activo</param>
+ <returns>Objeto de tipo Activo</returns>
+</member>
+<member name="M:_2LogicaNegocios.ActivosLN.obtenerTodosActivos">
+ <summary>
+ Obtener todos los activos
+ </summary>
+ <returns>Lista de objetos de tipo Activo</returns>
+</member>
+<member name="M:_2LogicaNegocios.AsignacionActivosLN.InsertarAsignacion(_3Entidades.AsignacionActivosEN)">
+ <summary>
+ Insertar una nueva asignacion de activos
+ </summary>
+ <param name="pAsignacion">Objeto asignacionActivos</param>
+</member>
+<member name="M:_2LogicaNegocios.AsignacionActivosLN.ModificarAsignacion(_3Entidades.AsignacionActivosEN)">
+ <summary>
+ Modificar Asignacion
+ </summary>
+ <param name="pAsignacion">Objeto asignacionActivo</param>
+</member>
+<member name="M:_2LogicaNegocios.AsignacionActivosLN.BorrarAsignacion(_3Entidades.AsignacionActivosEN)">
+ <summary>
+ Borrar asignacion
+ </summary>
+ <param name="pAsignacion">Objeto asignacion de activos</param>
+</member>
+<member name="M:_2LogicaNegocios.AsignacionActivosLN.ObtenerAsignacionPorCodAsig(System.String)">
+ <summary>
+ Obtener asignacion de activos por codigo
+ </summary>
+ <param name="pCod">Codigo de asign de activo</param>
+ <returns>Objeto asignacion de activos</returns>
+</member>
+<member name="M:_2LogicaNegocios.AsignacionActivosLN.obtenerTodosAsignacion">
+ <summary>
+ Obtener todas las asignaciones de activos
+ </summary>
+ <returns>Lista de objetos de tipo asignacion de activos</returns>
+</member>
+<member name="M:_2LogicaNegocios.CategoriaActivoLN.InsertarCategoria(_3Entidades.CategoriaActivoEN)">
+ <summary>
+ Insertar nueva categoria activo
+ </summary>
+ <param name="pCategoria">Objeto CategoriaActivo</param>
+ 
+</member>
+<member name="M:_2LogicaNegocios.CategoriaActivoLN.ModificarCategoria(_3Entidades.CategoriaActivoEN)">
+ <summary>
+ Modificar una categoria activo
+ </summary>
+ <param name="pCategoria">Objeto categoriaActivo</param>
+</member>
+<member name="M:_2LogicaNegocios.CategoriaActivoLN.BorrarCategoria(_3Entidades.CategoriaActivoEN)">
+ <summary>
+ Borrar categoria activo
+ </summary>
+ <param name="pCategoria">Objeto categoriaActivo</param>
+</member>
+<member name="M:_2LogicaNegocios.CategoriaActivoLN.ObtenerCategoriaPorCod(System.String)">
+ <summary>
+ Obtener categoria por codigo
+ </summary>
+ <param name="pCodCateg">Codigo de categoria</param>
+ <returns></returns>
+</member>
+<member name="M:_2LogicaNegocios.CategoriaActivoLN.obtenerTodasCategoria">
+ <summary>
+ Obtener toda las categorias
+ </summary>
+ <returns>Lista de bbjetos de categoriaActivo</returns>
+</member>
+<member name="M:_2LogicaNegocios.DepartamentosLN.InsertarDepartamento(_3Entidades.DepartamentosEN)">
+ <summary>
+ Insertar un nuevo departamento
+ </summary>
+ <param name="pDepartamento">Objeto departamento</param>
+ 
+</member>
+<member name="M:_2LogicaNegocios.DepartamentosLN.ModificarDepartamento(_3Entidades.DepartamentosEN)">
+ <summary>
+ Modificar departamento
+ </summary>
+ <param name="pDepartamento">Objeto departamento</param>
+</member>
+<member name="M:_2LogicaNegocios.DepartamentosLN.BorrarDepartamento(_3Entidades.DepartamentosEN)">
+ <summary>
+ Borrar departamento
+ </summary>
+ <param name="pDepartamento">Objeto departamento</param>
+</member>
+<member name="M:_2LogicaNegocios.DepartamentosLN.obtenerTodosDepartamentos">
+ <summary>
+ Obtener todos los departamentos
+ </summary>
+ <returns>Lista de objeto departamentos</returns>
+</member>
+<member name="M:_2LogicaNegocios.EmpleadosLN.InsertarEmpleado(_3Entidades.EmpleadosEN)">
+ <summary>
+ Insertar un empleado
+ </summary>
+ <param name="pEmpleado">Objeto empleado</param>
+</member>
+<member name="M:_2LogicaNegocios.EmpleadosLN.ModificarEmpleado(_3Entidades.EmpleadosEN)">
+ <summary>
+ Modificar un empleado
+ </summary>
+ <param name="pEmpleado">Objerto empleado</param>
+</member>
+<member name="M:_2LogicaNegocios.EmpleadosLN.BorrarEmpleado(_3Entidades.EmpleadosEN)">
+ <summary>
+ Borrar epleado
+ </summary>
+ <param name="pEmpleado">Objeto empleado</param>
+</member>
+<member name="M:_2LogicaNegocios.EmpleadosLN.ObtenerEmpleadoPorCedula(System.String)">
+ <summary>
+ Obtener empleado por cedula
+ </summary>
+ <param name="pCedula"></param>
+ <returns></returns>
+</member>
+<member name="M:_2LogicaNegocios.EmpleadosLN.obtenerTodosLosEmpleados">
+ <summary>
+ Obtener todos los empleados
+ </summary>
+ <returns>Lista de objeto Empleado</returns>
+</member>
 <member name="T:_2LogicaNegocios.My.Resources.Resources">
 <summary>
   A strongly-typed resource class, for looking up localized strings, etc.
@@ -21,6 +165,37 @@
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
+</member>
+<member name="M:_2LogicaNegocios.UsuariosLN.InsertarUsuario(_3Entidades.UsuariosEN)">
+ <summary>
+ Inserta un usuario
+ </summary>
+ <param name="pUsuarios">Objeto Usuario</param>
+</member>
+<member name="M:_2LogicaNegocios.UsuariosLN.ModificarUsuario(_3Entidades.UsuariosEN)">
+ <summary>
+ Modificar usuario
+ </summary>
+ <param name="pUsuarios">Objeto Usuario</param>
+</member>
+<member name="M:_2LogicaNegocios.UsuariosLN.BorrarUsuario(_3Entidades.UsuariosEN)">
+ <summary>
+ Borrar Usuario
+ </summary>
+ <param name="pUsuarios"></param>
+</member>
+<member name="M:_2LogicaNegocios.UsuariosLN.ObtenerUsuarioPorLogin(System.String)">
+ <summary>
+ Obtener un usuario por login
+ </summary>
+ <param name="pLogin">String nombre de usuario</param>
+ <returns>Objeto Usuario</returns>
+</member>
+<member name="M:_2LogicaNegocios.UsuariosLN.obtenerTodoLosUsuarios">
+ <summary>
+ Obtener todos los usuarios
+ </summary>
+ <returns>Lista de objetos de usuarios</returns>
 </member>
 </members>
 </doc>
