@@ -213,56 +213,6 @@ Public Class UsuariosAD
 
     End Function
 
-
-    ''' <summary>
-    ''' Obtener datos de usuario segun Login y Clave
-    ''' </summary>
-    ''' <param name="pLogin">Nombre de Usuario</param>
-    ''' <param name="pClave">Clave de usuario</param>
-    ''' <returns>Objeto Usuarios</returns>
-
-    Public Function loginDeUsuarios(ByVal pLogin As String, ByVal pClave As String) As UsuariosEN
-
-        Dim usuario As New UsuariosEN
-        usuario = Nothing
-
-        Try
-
-            Dim strSelect As String
-            miConexion.Open()
-
-            strSelect = "SELECT * FROM Usuarios 
-                            WHERE Login = @Login 
-                            AND Clave = @clave"
-
-            Dim cmdSelect As New OleDbCommand(strSelect, miConexion)
-
-            cmdSelect.Parameters.Add("@Login", OleDbType.VarChar).Value = pLogin
-            cmdSelect.Parameters.Add("@clave", OleDbType.VarChar).Value = pClave
-
-            Dim drUsuario As OleDbDataReader = cmdSelect.ExecuteReader
-            While (drUsuario.Read())
-
-                usuario.login = drUsuario("Login")
-                usuario.nombreCompleto = drUsuario("NombreCompleto")
-                usuario.administrador = drUsuario("Administrador")
-                usuario.contador = drUsuario("Contador")
-
-            End While
-
-            miConexion.Close()
-            Return usuario
-
-        Catch ex As Exception
-            If (miConexion.State = ConnectionState.Open) Then
-                miConexion.Close()
-            End If
-            Throw New Exception(ex.Message)
-            Return Nothing
-        End Try
-    End Function
-
-
 #End Region
 
 End Class

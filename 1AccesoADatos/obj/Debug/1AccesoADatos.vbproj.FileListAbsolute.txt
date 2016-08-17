@@ -1,8 +1,6 @@
 E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\1AccesoADatos.dll
 E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\1AccesoADatos.pdb
 E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\1AccesoADatos.xml
-E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\1AccesoADatos.dll.CodeAnalysisLog.xml
-E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\1AccesoADatos.dll.lastcodeanalysissucceeded
 E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\3Entidades.dll
 E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\3Entidades.pdb
 E:\s\Progra3\proyectoFinal\ProyectoControl\1AccesoADatos\bin\Debug\3Entidades.xml

@@ -6,6 +6,95 @@
 </name>
 </assembly>
 <members>
+<member name="M:_3Entidades.ActivosEN.#ctor">
+ <summary>
+ Activos constructor vacio
+ </summary>
+</member>
+<member name="M:_3Entidades.ActivosEN.#ctor(System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+ <summary>
+ Activos constructor con parametros
+ </summary>
+ <param name="Cod_Activo">Codigo del Activo</param>
+ <param name="Descripcion">Descripcion del Activo</param>
+ <param name="Cod_Categoria">Codigo de la Categoria</param>
+ <param name="Fec_Compra">Fecha de Compra</param>
+ <param name="Costo">Costo del Activo</param>
+ <param name="Observaciones">Observaciones</param>
+</member>
+<member name="M:_3Entidades.AsignacionActivosEN.#ctor">
+ <summary>
+ AsignacionActivos constructor vacio
+ </summary>
+</member>
+<member name="M:_3Entidades.AsignacionActivosEN.#ctor(System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+ <summary>
+ AsignacionActivos constructor con parametros
+ </summary>
+ <param name="Cod_Asignacion">Codigo de asignacion</param>
+ <param name="Cedula">Cedula</param>
+ <param name="Cod_Activo">Codigo del Activo</param>
+ <param name="Fec_Asignacion">Fecha de la asignacion</param>
+ <param name="Observaciones">Observaciones</param>
+ <param name="Usuario_Asigno">Usuario asignado</param>
+</member>
+<member name="M:_3Entidades.CategoriaActivoEN.#ctor">
+ <summary>
+ CategoriaActivo constructor vacio
+ </summary>
+</member>
+<member name="M:_3Entidades.CategoriaActivoEN.#ctor(System.Object,System.Object,System.Object)">
+ <summary>
+ CategoriaActivo constructor con parametros
+ </summary>
+ <param name="Cod_Categoria">Codigo de la categoria</param>
+ <param name="Descripcion">Descripcion</param>
+ <param name="Observaciones">Observaciones</param>
+</member>
+<member name="M:_3Entidades.DepartamentosEN.#ctor">
+ <summary>
+Departamentos constructor vacio 
+ </summary>
+</member>
+<member name="M:_3Entidades.DepartamentosEN.#ctor(System.Object,System.Object,System.Object)">
+ <summary>
+ Departamentos constructor con parametros
+ </summary>
+ <param name="Cod_Dept">Codigo del Departamento</param>
+ <param name="Nombre">Nombre del Departamento</param>
+ <param name="Observaciones">Observaciones</param>
+ 
+</member>
+<member name="M:_3Entidades.DepartamentosEN.ToString">
+ <summary>
+ FUncion toString
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:_3Entidades.EmpleadosEN.#ctor">
+ <summary>
+ Empleados constructor vacio
+ </summary>
+</member>
+<member name="M:_3Entidades.EmpleadosEN.#ctor(System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+ <summary>
+ Empleados constructor con parametros
+ </summary>
+ <param name="Cedula">Cedula del Empleado</param>
+ <param name="NombreCompleto">Nombre Completo del Empleado</param>
+ <param name="Cod_Dept">Codigo del Departamento</param>
+ <param name="Tel_Celular">Telefono Celular</param>
+ <param name="Tel_Casa">Telefono de la Casa</param>
+ <param name="Fec_Nacimiento">Fecha de Nacimiento</param>
+ <param name="E_Mail">Correo Electronico (Email)</param>
+ <param name="Dir_Completa">Direccion completa</param>
+</member>
+<member name="M:_3Entidades.EmpleadosEN.ToString">
+ <summary>
+ Funcion toString
+ </summary>
+ <returns></returns>
+</member>
 <member name="T:_3Entidades.My.Resources.Resources">
 <summary>
   A strongly-typed resource class, for looking up localized strings, etc.
@@ -21,6 +110,27 @@
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
+</member>
+<member name="M:_3Entidades.UsuariosEN.#ctor">
+ <summary>
+ Usuarios constructor vacio
+ </summary>
+</member>
+<member name="M:_3Entidades.UsuariosEN.#ctor(System.Object,System.Object,System.Object,System.Object,System.Object)">
+ <summary>
+ Usuarios constructor con parametros
+ </summary>
+ <param name="login">Nombre de Usuario</param>
+ <param name="nombreCompleto">Nombre Completo</param>
+ <param name="clave">Clave del Usuario</param>
+ <param name="administrador">Si es administrador o no</param>
+ <param name="contador">Si es contador o no</param>
+</member>
+<member name="M:_3Entidades.UsuariosEN.ToString">
+ <summary>
+ Funcion toString
+ </summary>
+ <returns></returns>
 </member>
 </members>
 </doc>

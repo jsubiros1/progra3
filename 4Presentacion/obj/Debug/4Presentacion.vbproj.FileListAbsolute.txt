@@ -10,3 +10,25 @@ c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentaci
 c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\obj\Debug\4Presentacion.xml
 c:\users\chalo\documents\visual studio 2015\Projects\ProyectoControl\4Presentacion\obj\Debug\4Presentacion.pdb
 C:\Users\Chalo\Documents\Visual Studio 2015\Projects\ProyectoControl\4Presentacion\obj\Debug\_4Presentacion.frmUsuarios.resources
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\4Presentacion.exe.config
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\obj\Debug\4Presentacion.exe
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\obj\Debug\4Presentacion.xml
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\obj\Debug\4Presentacion.pdb
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\4Presentacion.exe
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\4Presentacion.pdb
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\4Presentacion.xml
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\2LogicaNegocios.dll
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\3Entidades.dll
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\1AccesoADatos.dll
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\2LogicaNegocios.pdb
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\2LogicaNegocios.xml
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\3Entidades.pdb
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\3Entidades.xml
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\1AccesoADatos.pdb
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\bin\Debug\1AccesoADatos.xml
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\obj\Debug\4Presentacion.vbprojResolveAssemblyReference.cache
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\obj\Debug\_4Presentacion.Form1.resources
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\obj\Debug\_4Presentacion.frmUsuarios.resources
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\obj\Debug\_4Presentacion.LoginForm1.resources
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\obj\Debug\_4Presentacion.Resources.resources
+E:\s\Progra3\proyectoFinal\ProyectoControl\4Presentacion\obj\Debug\4Presentacion.vbproj.GenerateResource.Cache
